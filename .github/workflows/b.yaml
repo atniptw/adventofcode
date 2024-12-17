@@ -1,0 +1,20 @@
+name: Workflow B
+
+on:
+    workflow_dispatch: 
+    workflow_run:
+        workflows: ["Workflow A"]
+        types:
+            - completed
+    pull_request: 
+        branches: [main]
+
+jobs:
+    foo:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Echo
+              working-directory: .
+              run: |
+                sleep 30
+                echo "Hello World"

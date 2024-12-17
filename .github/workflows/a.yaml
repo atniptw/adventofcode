@@ -1,0 +1,17 @@
+name: Workflow A
+
+on:
+    workflow_dispatch:
+    push:
+        branches: [main]
+
+jobs:
+    foo:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Echo
+              working-directory: .
+              run: |
+                sleep 30
+                echo "Hello World"
+              
