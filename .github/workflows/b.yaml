@@ -16,5 +16,5 @@ jobs:
             - name: Echo
               working-directory: .
               run: |
-                sleep 30
+                sleep 3
                 echo "Hello World"
