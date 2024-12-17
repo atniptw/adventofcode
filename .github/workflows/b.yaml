@@ -5,12 +5,12 @@ on:
     push:
         branches: [main]
         paths:
-            - .github/workflow/b.yaml
+            - .github/workflows/b.yaml
 
     pull_request: 
         branches: [main]
         paths:
-            - .github/workflow/b.yaml
+            - .github/workflows/b.yaml
 
     workflow_run:
         workflows: ["Workflow A"]
