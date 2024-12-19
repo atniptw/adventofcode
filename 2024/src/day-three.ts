@@ -1,4 +1,4 @@
-import readline from 'readline'
+import readline from 'readline';
 
 function mull(input: string): number {
     const regex = new RegExp(/(\d+),(\d+)/g);
@@ -14,18 +14,18 @@ export function mullIt(input: string): number {
     let matches;
     let agg = 0;
     while ((matches = regex.exec(input)) !== null) {
-        agg += mull(matches[0])
+        agg += mull(matches[0]);
     }
     return agg;
 }
 
 export function mullItOver(input: string): number {
     const regex = /mul\(\d+,\d+\)|don't\(\)|do\(\)/g;
-    const instructions: string[] = []
+    const instructions: string[] = [];
 
     let matches;
     while ((matches = regex.exec(input)) !== null) {
-        instructions.push(matches[0])
+        instructions.push(matches[0]);
     }
 
     let enabled = true;
@@ -48,7 +48,7 @@ export function mullItOver(input: string): number {
 }
 
 export function dayThree(reader: readline.Interface) {
-    let input: string = '';
+    let input = '';
 
     reader
         .on('line', (line: string) => {

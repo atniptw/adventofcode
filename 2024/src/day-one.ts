@@ -1,4 +1,4 @@
-import readline from 'readline'
+import readline from 'readline';
 
 export function distance(a: number[], b: number[]): number {
     let sum = 0;
@@ -14,8 +14,8 @@ export function distance(a: number[], b: number[]): number {
 export function similarity(a: number[], b: number[]): number {
     let sum = 0;
     a.forEach(element => {
-        const matches = b.filter((value: number) => { return value === element })
-        sum = sum + (element * matches.length)
+        const matches = b.filter((value: number) => { return value === element; });
+        sum = sum + (element * matches.length);
     });
     return sum;
 }
@@ -30,6 +30,6 @@ export function dayOne(reader: readline.Interface) {
     })
       .on('close', () => {
         console.log(`Day One Part One: ${distance(one, two)}`);
-        console.log(`Day One Part Two: ${similarity(one, two)}`)
+        console.log(`Day One Part Two: ${similarity(one, two)}`);
       });  
 }

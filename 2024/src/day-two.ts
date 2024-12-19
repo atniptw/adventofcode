@@ -1,4 +1,4 @@
-import readline from 'readline'
+import readline from 'readline';
 
 function isDescending(a: number[]): boolean {
     return a.every((currentValue, index) => {
@@ -21,7 +21,7 @@ export function isSafeEnough(a: number[]): boolean {
         const clone = [...arr];
         clone.splice(i,1);
         return isSafe(clone);
-    })
+    });
 }
 
 export function dayTwo(reader: readline.Interface) {
