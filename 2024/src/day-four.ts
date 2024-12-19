@@ -2,18 +2,16 @@ import readline from 'readline';
 
 function countWordOccurrences(wordSearch: string[][], wordToFind: string): number {
     let count = 0;
-    const indices: string[] = [];
     const reverseWordToFind = [...wordToFind].reverse().join('');
 
     for (let i = 0; i < wordSearch.length; i++) {
         for (let j = 0; j < wordSearch[i].length; j++) {
 
             // Check horizontal
-            if (j + wordToFind.length < wordSearch[i].length) {
+            if (j + wordToFind.length <= wordSearch[i].length) {
                 const horizontal = wordSearch[i].slice(j, j + wordToFind.length).join('');
                 if (horizontal === wordToFind || horizontal === reverseWordToFind) {
                     count++;
-                    indices.push(`${i+1}:${j+1}`);
                 }
             }
 
@@ -24,7 +22,6 @@ function countWordOccurrences(wordSearch: string[][], wordToFind: string): numbe
             }
             if (vertical === wordToFind || vertical === reverseWordToFind) {
                 count++;
-                indices.push(`${i+1}:${j+1}`);
             }
 
             // Check diagonally top left to bottom right 
@@ -34,7 +31,6 @@ function countWordOccurrences(wordSearch: string[][], wordToFind: string): numbe
             }
             if (diagonal === wordToFind || diagonal === reverseWordToFind) {
                 count++;
-                indices.push(`${i+1}:${j+1}`);
             }
 
             // Check diagonally top right to bottom left 
@@ -44,13 +40,10 @@ function countWordOccurrences(wordSearch: string[][], wordToFind: string): numbe
             }
             if (diagonal === wordToFind || diagonal === reverseWordToFind) {
                 count++;
-                indices.push(`${i+1}:${j+1}`);
             }
         }
     }
 
-    // console.log(`Puzzle Size: ${wordSearch.length}x${wordSearch[0].length}`);
-    // console.log(`Found: [${indices}]`);
     return count;
 }
 
