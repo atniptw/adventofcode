@@ -47,7 +47,7 @@ function countWordOccurrences(wordSearch: string[][], wordToFind: string): numbe
     return count;
 }
 
-export function solvePuzzle(input: string[]): number {
+export function part1(input: string[]): number {
     const puzzle: string[][] = [];
     input.forEach((line) => {
         const row = line.split('');
@@ -65,7 +65,7 @@ export function dayFour(reader: readline.Interface) {
             input.push(line);
         })
         .on('close', () => {
-            console.log(`Day Four Part One: ${solvePuzzle(input)}`);
+            console.log(`Day Four Part One: ${part1(input)}`);
             // console.log(`Day Three Part Two: ${mullItOver(input)}`);
         });
 }

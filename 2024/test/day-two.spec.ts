@@ -1,4 +1,4 @@
-import { isSafe, isSafeEnough } from "../src/day-two";
+import { part1, part2 } from "../src/day-two";
 
 describe('Day 2: Red-Nosed Reports', () => {
     describe('Part 1', () => {
@@ -10,7 +10,7 @@ describe('Day 2: Red-Nosed Reports', () => {
             ['Unsafe because 4 4 is neither an increase or a decrease.', { input: [8, 6, 4, 4, 1], safe: false }],
             ['Safe because the levels are all increasing by 1, 2, or 3.', { input: [1, 3, 6, 7, 9], safe: true }],
         ])('%s', (scenario, { input, safe}) => {
-            expect(isSafe(input)).toBe(safe);
+            expect(part1(input)).toBe(safe);
         });
     });
     
@@ -23,7 +23,7 @@ describe('Day 2: Red-Nosed Reports', () => {
             ['Safe by removing the third level, 4.', { input: [8, 6, 4, 4, 1], safe: true }],
             ['Safe without removing any level.', { input: [1, 3, 6, 7, 9], safe: true }],
         ])('%s', (scenario, { input, safe}) => {
-            expect(isSafeEnough(input)).toBe(safe);
+            expect(part2(input)).toBe(safe);
         });
     });
 });

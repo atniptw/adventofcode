@@ -12,15 +12,15 @@ function isAscending(a:number[]): boolean {
     });
 }
 
-export function isSafe(a: number[]): boolean {
+export function part1(a: number[]): boolean {
     return isDescending(a) || isAscending(a);
 }
 
-export function isSafeEnough(a: number[]): boolean {
-    return isSafe(a) || a.some((v, i, arr) => {
+export function part2(a: number[]): boolean {
+    return part1(a) || a.some((v, i, arr) => {
         const clone = [...arr];
         clone.splice(i,1);
-        return isSafe(clone);
+        return part1(clone);
     });
 }
 
@@ -32,7 +32,7 @@ export function dayTwo(reader: readline.Interface) {
       reports.push(reportRaw.map(i => parseInt(i)));
     })
       .on('close', () => {
-        console.log(`Day Two Part One: ${reports.filter(report => isSafe(report)).length}`);
-        console.log(`Day One Part Two: ${reports.filter(report => isSafeEnough(report)).length}`);
+        console.log(`Day Two Part One: ${reports.filter(report => part1(report)).length}`);
+        console.log(`Day Two Part Two: ${reports.filter(report => part2(report)).length}`);
       });  
 }
