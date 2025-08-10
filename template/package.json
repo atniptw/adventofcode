@@ -1,9 +1,16 @@
 {
+  "name": "@aoc/YEAR",
+  "version": "1.0.0",
+  "description": "Advent of Code YEAR solutions",
   "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "clean": "rm -rf build",
     "lint": "eslint .",
-    "prestart": "tsc -p tsconfig.build.json",
     "start": "node build/index.js",
     "test": "jest"
+  },
+  "dependencies": {
+    "@aoc/utils": "^1.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.16.0",

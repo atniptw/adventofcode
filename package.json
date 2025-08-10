@@ -1,0 +1,25 @@
+{
+  "name": "advent-of-code",
+  "version": "1.0.0",
+  "description": "Advent of Code solutions across multiple years",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "years/*"
+  ],
+  "scripts": {
+    "solve": "node scripts/runner.js",
+    "setup": "node scripts/setup-year.js",
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces",
+    "lint": "npm run lint --workspaces",
+    "clean": "npm run clean --workspaces"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "ts-node": "^10.9.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
