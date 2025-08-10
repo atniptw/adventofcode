@@ -49,7 +49,8 @@ import readline from 'readline';
 
 async function main() {
     try {
-        const { part1, part2 } = await import('./src/day-${day}');
+        const module = require('./src/day-${day}.ts');
+        const { part1, part2 } = module;
         
         const inputFile = './src/inputs/day-${day}.txt';
         if (!fs.existsSync(inputFile)) {
@@ -71,7 +72,9 @@ async function main() {
         reader.on('close', () => {
             console.log(\`=== Day ${parseInt(day)} ===\`);
             
-            if ('${part}' === 'both' || '${part}' === '1') {
+            const requestedPart: string = '${part}';
+            
+            if (requestedPart === 'both' || requestedPart === '1') {
                 if (part1) {
                     const start1 = Date.now();
                     const result1 = part1(input);
@@ -82,7 +85,7 @@ async function main() {
                 }
             }
             
-            if ('${part}' === 'both' || '${part}' === '2') {
+            if (requestedPart === 'both' || requestedPart === '2') {
                 if (part2) {
                     const start2 = Date.now();
                     const result2 = part2(input);
@@ -93,8 +96,8 @@ async function main() {
                 }
             }
         });
-    } catch (error) {
-        console.error('Error running solution:', error.message);
+    } catch (error: unknown) {
+        console.error('Error running solution:', error instanceof Error ? error.message : String(error));
         process.exit(1);
     }
 }

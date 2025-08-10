@@ -39,15 +39,3 @@ export function part2(input: string[]): number {
     }, 0);
 }
 
-export function dayThree(reader: readline.Interface) {
-    let input = '';
-
-    reader
-        .on('line', (line: string) => {
-            input = input.concat(line);
-        })
-        .on('close', () => {
-            console.log(`Day Three Part One: ${part1(input)}`);
-            console.log(`Day Three Part Two: ${part2(input)}`);
-        });
-}

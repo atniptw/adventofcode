@@ -131,3 +131,12 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Advent of Code - DO NOT COMMIT INPUT FILES
+# The AoC creator has requested that puzzle inputs not be shared publicly
+**/inputs/*.txt
+years/*/src/inputs/day-*.txt
+packages/*/src/inputs/*.txt
+
+# Temporary runner files
+temp-runner.ts

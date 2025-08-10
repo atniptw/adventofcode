@@ -67,6 +67,7 @@ npm run solve 2025 15
    ```
    years/2024/src/inputs/day-01.txt
    ```
+   **Important:** Input files are automatically ignored by git (per AoC creator's request). Never commit puzzle inputs to version control.
 
 2. Implement your solution using shared utilities:
    ```typescript
@@ -126,3 +127,19 @@ npm run lint -w @aoc/2025      # Lint only 2025
 - Each solution function receives `input: string[]` where each array element is a line from the input file
 - Empty lines are preserved in the array
 - No automatic parsing is done - handle the input format as needed for each puzzle
+
+## Input File Guidelines
+
+**IMPORTANT:** The Advent of Code creator has specifically requested that puzzle inputs NOT be shared publicly. This repository is configured to automatically ignore all input files:
+
+- ✅ Input files (`.txt` files in `inputs/` directories) are automatically ignored by git
+- ✅ You can safely run `git add .` without risk of committing input files
+- ✅ Template input files are empty placeholders - add your personal puzzle inputs
+- ⚠️ **Never commit actual puzzle inputs** - respect the AoC creator's request
+
+The following patterns are ignored:
+```
+**/inputs/*.txt
+years/*/src/inputs/day-*.txt
+packages/*/src/inputs/*.txt
+```
