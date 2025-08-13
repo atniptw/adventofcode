@@ -1,25 +1,23 @@
-import { parseNumberColumns, frequency } from '@aoc/utils';
+// import { parseNumbers, parseNumberGrid, parseCharGrid, Grid, frequency, count, sum } from '@aoc/utils';
 
-function parseInput(input: string[]): [number[], number[]] {
-    const columns = parseNumberColumns(input, '   ');
-    return [columns[0], columns[1]];
+export function part1(_input: string[]): number {
+    // Example patterns you can use:
+    
+    // For single numbers per line:
+    // const numbers = parseNumbers(_input);
+    
+    // For space-separated numbers per line:
+    // const grid = parseNumberGrid(_input);
+    
+    // For character grids:
+    // const charGrid = Grid.fromStrings(_input);
+    // const grid = parseCharGrid(_input);
+    
+    // TODO: Implement part 1
+    return 0;
 }
 
-export function part1(input: string[]): number {
-    const [one, two] = parseInput(input);
-    
-    one.sort();
-    two.sort();
-    
-    return one.reduce((sum, val, i) => sum + Math.abs(val - two[i]), 0);
+export function part2(_input: string[]): number {
+    // TODO: Implement part 2
+    return 0;
 }
-
-export function part2(input: string[]): number {
-    const [one, two] = parseInput(input);
-    const twoFreq = frequency(two);
-    
-    return one.reduce((sum, element) => {
-        return sum + (element * (twoFreq.get(element) || 0));
-    }, 0);
-}
-

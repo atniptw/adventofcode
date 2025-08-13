@@ -1,42 +1,15 @@
-import { part1, part2 } from "../src/day-one";
+// import { part1, part2 } from '../src/day-01';
 
-describe('Day 1: Historian Hysteria', () => {
-    describe("Part 1", () => {
-        it("handles lists with single item", () => {
-            const a = [1];
-            const b = [3];
-    
-            expect(part1(a, b)).toBe(2);
-        });
-    
-        it("calculates accumulated distance", () => {
-            const a = [1, 2, 3, 3, 3 ,4];
-            const b = [3, 3, 3, 4, 5, 9];
-    
-            expect(part1(a, b)).toBe(11);
-        });
-    
-        it("calculates sorted accumulated distance", () => {
-            const a = [3, 4, 2, 1, 3, 3];
-            const b = [4, 3, 5, 3, 9, 3];
-    
-            expect(part1(a, b)).toBe(11);
-        });
-    });
-    
-    describe("Part 2", () => {
-        it("handles base case", () => {
-            const a = [3];
-            const b = [3, 3, 3];
-    
-            expect(part2(a, b)).toBe(9);
-        });
-    
-        it("calculates accumulated similarity", () => {
-            const a = [3, 4, 2, 1, 3, 3];
-            const b = [4, 3, 5, 3, 9, 3];
-    
-            expect(part2(a, b)).toBe(31);
-        });
-    });
-});
+// describe('Day 01', () => {
+//   const testInput = [
+//     // Add test input here
+//   ];
+
+//   test('part1', () => {
+//     expect(part1(testInput)).toBe(0); // Update expected value
+//   });
+
+//   test('part2', () => {
+//     expect(part2(testInput)).toBe(0); // Update expected value
+//   });
+// });

@@ -1,13 +1,19 @@
 {
   "name": "@aoc/2024",
   "version": "1.0.0",
+  "type": "module",
   "description": "Advent of Code 2024 solutions",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "clean": "rm -rf build",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "tsc --noEmit",
     "start": "node build/index.js",
-    "test": "jest"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "check": "npm run typecheck && npm run lint && npm run test"
   },
   "dependencies": {
     "@aoc/utils": "^1.0.0"

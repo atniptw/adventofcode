@@ -1,8 +1,12 @@
 #!/usr/bin/env node
 
-const { spawn } = require('child_process');
-const fs = require('fs');
-const path = require('path');
+import { spawn } from 'child_process';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Parse command line arguments
 const args = process.argv.slice(2);
@@ -42,14 +46,33 @@ if (!fs.existsSync(solutionFile)) {
     process.exit(1);
 }
 
-// Create a temporary runner file for this specific execution
-const tempRunnerContent = `
+// Change to year directory and run with Vitest
+process.chdir(yearPath);
+
+// Build first to ensure we have JS files
+const buildChild = spawn('npx', ['tsc'], {
+    stdio: 'inherit'
+});
+
+buildChild.on('close', (buildCode) => {
+    if (buildCode !== 0) {
+        console.error('Build failed');
+        process.exit(1);
+    }
+    
+    // Create a temporary runner file for this specific execution
+    const tempRunnerContent = `
 import fs from 'node:fs';
 import readline from 'readline';
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 async function main() {
     try {
-        const module = require('./src/day-${day}.ts');
+        const module = await import('./build/day-${day}.js');
         const { part1, part2 } = module;
         
         const inputFile = './src/inputs/day-${day}.txt';
@@ -63,16 +86,16 @@ async function main() {
             crlfDelay: Infinity
         });
 
-        const input: string[] = [];
+        const input = [];
         
-        reader.on('line', (line: string) => {
+        reader.on('line', (line) => {
             input.push(line);
         });
         
         reader.on('close', () => {
             console.log(\`=== Day ${parseInt(day)} ===\`);
             
-            const requestedPart: string = '${part}';
+            const requestedPart = '${part}';
             
             if (requestedPart === 'both' || requestedPart === '1') {
                 if (part1) {
@@ -96,7 +119,7 @@ async function main() {
                 }
             }
         });
-    } catch (error: unknown) {
+    } catch (error) {
         console.error('Error running solution:', error instanceof Error ? error.message : String(error));
         process.exit(1);
     }
@@ -105,27 +128,25 @@ async function main() {
 main();
 `;
 
-const tempRunnerPath = path.join(yearPath, 'temp-runner.ts');
-fs.writeFileSync(tempRunnerPath, tempRunnerContent);
+    const tempRunnerPath = path.join(yearPath, 'temp-runner.mjs');
+    fs.writeFileSync(tempRunnerPath, tempRunnerContent);
 
-// Change to year directory and run with ts-node
-process.chdir(yearPath);
+    const child = spawn('node', ['temp-runner.mjs'], {
+        stdio: 'inherit'
+    });
 
-const child = spawn('npx', ['ts-node', 'temp-runner.ts'], {
-    stdio: 'inherit'
-});
-
-child.on('close', (code) => {
-    // Clean up temp file
-    fs.unlinkSync(tempRunnerPath);
-    process.exit(code);
-});
-
-child.on('error', (error) => {
-    console.error('Error running solution:', error.message);
-    // Clean up temp file
-    if (fs.existsSync(tempRunnerPath)) {
+    child.on('close', (code) => {
+        // Clean up temp file
         fs.unlinkSync(tempRunnerPath);
-    }
-    process.exit(1);
+        process.exit(code);
+    });
+
+    child.on('error', (error) => {
+        console.error('Error running solution:', error.message);
+        // Clean up temp file
+        if (fs.existsSync(tempRunnerPath)) {
+            fs.unlinkSync(tempRunnerPath);
+        }
+        process.exit(1);
+    });
 });

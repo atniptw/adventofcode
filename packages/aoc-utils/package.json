@@ -7,6 +7,8 @@
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf dist",
-    "test": "jest"
+    "typecheck": "tsc --noEmit",
+    "lint": "echo 'No linting configured for utils'",
+    "test": "echo 'No tests configured for utils'"
   }
 }

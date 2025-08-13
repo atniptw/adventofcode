@@ -1,6 +1,6 @@
-// import { part1, part2 } from '../src/day-03';
+// import { part1, part2 } from '../src/day-06';
 
-// describe('Day 03', () => {
+// describe('Day 06', () => {
 //   const testInput = [
 //     // Add test input here
 //   ];
