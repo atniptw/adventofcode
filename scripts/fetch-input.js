@@ -56,15 +56,15 @@ if (isNaN(day) || day < 1 || day > 25) {
 }
 
 // Check if year directory exists
-const yearDir = path.join(__dirname, '..', 'years', year);
+const yearDir = path.join(__dirname, '..', 'src', year);
 if (!fs.existsSync(yearDir)) {
     console.error(`Error: Year directory not found: ${yearDir}`);
-    console.error(`Run 'npm run setup ${year}' first to create the year workspace`);
+    console.error(`Run 'npm run setup ${year}' first to create the year directory`);
     process.exit(1);
 }
 
 // Create inputs directory if it doesn't exist
-const inputsDir = path.join(yearDir, 'src', 'inputs');
+const inputsDir = path.join(yearDir, 'inputs');
 if (!fs.existsSync(inputsDir)) {
     fs.mkdirSync(inputsDir, { recursive: true });
     console.log(`Created inputs directory: ${inputsDir}`);

@@ -38,9 +38,9 @@ To get your session token:
 4. Copy the value of the "session" cookie
 5. Save in `.env` file as `AOC_SESSION=<your-token>` (recommended)
 
-### Setting Up New Years
+### Setting Up New Days
 ```bash
-npm run setup <year>      # Creates new year workspace with 25 day templates
+npm run start-day <year> <day>    # Creates files and downloads input
 ```
 
 ### Development Commands
@@ -113,3 +113,75 @@ When implementing solutions:
 2. Input is always provided as `string[]` (one line per element)
 3. Solutions must return numbers (or strings that coerce to numbers)
 4. Check existing solutions in the same year for patterns and consistency
+
+# AI Agent Quick Reference
+
+## First Steps for AI Agents
+When working with this project, ALWAYS start with these commands to understand the current state:
+
+1. **`npm run aoc-status`** - Get project overview and identify what's available
+2. **`npm run list-days [year]`** - See all implemented days and their status  
+3. **`npm run help`** - Reference all available commands
+
+## Common AI Agent Tasks
+
+### Starting a New Day
+```bash
+npm run start-day <year> <day>    # Creates files + downloads input (one command!)
+```
+
+### Checking Before Solving
+```bash
+npm run check-day <year> <day>    # Validates everything is ready
+```
+
+### Running Solutions
+```bash
+npm run solve <year> <day>        # Run solution
+npm test -- day-<DD>             # Run tests with filtering
+```
+
+### Discovery & Debugging
+```bash
+npm run aoc-status               # Project health check
+npm run list-days 2024           # See what's implemented
+npm run typecheck                # Check TypeScript
+```
+
+## File Patterns for AI Agents
+
+### Predictable Structure
+- Solutions: `src/<year>/day-<DD>.ts` (always zero-padded)
+- Tests: `test/<year>/day-<DD>.spec.ts`
+- Inputs: `src/<year>/inputs/day-<DD>.txt`
+- Utils: `src/utils/` (shared across all years)
+
+### Expected Exports
+Every solution file must export:
+```typescript
+export function part1(input: string[]): number { }
+export function part2(input: string[]): number { }
+```
+
+### Common Imports
+```typescript
+import { parseNumbers, Grid, sum, count } from '../utils';
+```
+
+## Error Handling for AI Agents
+All commands provide actionable error messages with next steps:
+- Missing files → Suggests correct setup command
+- Build failures → Points to typecheck command
+- Missing inputs → Shows fetch-input command
+
+## Validation Workflow
+1. `npm run check-day <year> <day>` - Verify setup
+2. Edit solution file
+3. `npm run solve <year> <day>` - Test solution
+4. `npm test -- day-<DD>` - Run tests
+
+## AI Agent Best Practices
+- Always check project status first with `npm run aoc-status`
+- Use `npm run check-day` before implementing solutions
+- Leverage the utils library for common operations
+- Test incrementally with `npm run solve <year> <day> 1` for part 1 only

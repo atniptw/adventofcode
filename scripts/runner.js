@@ -11,52 +11,63 @@ const __dirname = path.dirname(__filename);
 // Parse command line arguments
 const args = process.argv.slice(2);
 
-if (args.length < 2) {
+if (args.length < 2 || args.includes('--help') || args.includes('-h')) {
     console.log('Usage: npm run solve <year> <day> [part]');
-    console.log('Example: npm run solve 2024 1');
-    console.log('Example: npm run solve 2024 1 1');
-    console.log('Example: npm run solve 2024 1 2');
-    process.exit(1);
+    console.log('');
+    console.log('Runs the solution for a specific Advent of Code day');
+    console.log('');
+    console.log('Arguments:');
+    console.log('  year    Year (e.g., 2024)');
+    console.log('  day     Day number (1-25)');
+    console.log('  part    Optional: 1 or 2 (default: both)');
+    console.log('');
+    console.log('Examples:');
+    console.log('  npm run solve 2024 1      # Run both parts');
+    console.log('  npm run solve 2024 1 1    # Run part 1 only');
+    console.log('  npm run solve 2024 1 2    # Run part 2 only');
+    console.log('');
+    console.log('💡 Don\'t have a day setup? Run: npm run start-day <year> <day>');
+    process.exit(args.includes('--help') || args.includes('-h') ? 0 : 1);
 }
 
 const year = args[0];
 const day = args[1].padStart(2, '0'); // Pad with leading zero
 const part = args[2] || 'both'; // Default to both parts
 
-const yearPath = path.join(__dirname, '..', 'years', year);
+const srcPath = path.join(__dirname, '..', 'src', year);
 
 // Check if year directory exists
-if (!fs.existsSync(yearPath)) {
-    console.error(`Year ${year} directory not found`);
-    process.exit(1);
-}
-
-// Check if the year has a package.json
-const yearPackageJson = path.join(yearPath, 'package.json');
-if (!fs.existsSync(yearPackageJson)) {
-    console.error(`No package.json found in ${year} directory`);
+if (!fs.existsSync(srcPath)) {
+    console.error(`❌ Year ${year} directory not found`);
+    console.log(`💡 Create it with: npm run start-day ${year} 1`);
+    console.log(`📊 See status: npm run aoc-status`);
     process.exit(1);
 }
 
 // Build the solution file path
-const solutionFile = path.join(yearPath, 'src', `day-${day}.ts`);
+const solutionFile = path.join(srcPath, `day-${day}.ts`);
 
 if (!fs.existsSync(solutionFile)) {
-    console.error(`Solution file not found: ${solutionFile}`);
+    console.error(`❌ Solution file not found: ${solutionFile}`);
+    console.log(`💡 Create it with: npm run start-day ${year} ${parseInt(day)}`);
+    console.log(`📋 Check day status: npm run check-day ${year} ${parseInt(day)}`);
     process.exit(1);
 }
 
-// Change to year directory and run with Vitest
-process.chdir(yearPath);
+// Change to project root
+const projectRoot = path.join(__dirname, '..');
+process.chdir(projectRoot);
 
 // Build first to ensure we have JS files
-const buildChild = spawn('npx', ['tsc'], {
+const buildChild = spawn('npm', ['run', 'build'], {
     stdio: 'inherit'
 });
 
 buildChild.on('close', (buildCode) => {
     if (buildCode !== 0) {
-        console.error('Build failed');
+        console.error('❌ Build failed');
+        console.log('💡 Check TypeScript errors above');
+        console.log('🔧 Try: npm run typecheck');
         process.exit(1);
     }
     
@@ -72,12 +83,14 @@ const __dirname = path.dirname(__filename);
 
 async function main() {
     try {
-        const module = await import('./build/day-${day}.js');
+        const module = await import('./build/${year}/day-${day}.js');
         const { part1, part2 } = module;
         
-        const inputFile = './src/inputs/day-${day}.txt';
+        const inputFile = './src/${year}/inputs/day-${day}.txt';
         if (!fs.existsSync(inputFile)) {
-            console.error('Input file not found:', inputFile);
+            console.error('❌ Input file not found:', inputFile);
+            console.log(\`💡 Download it with: npm run fetch-input ${year} ${parseInt(day)}\`);
+            console.log(\`📋 Check day status: npm run check-day ${year} ${parseInt(day)}\`);
             process.exit(1);
         }
 
@@ -128,7 +141,7 @@ async function main() {
 main();
 `;
 
-    const tempRunnerPath = path.join(yearPath, 'temp-runner.mjs');
+    const tempRunnerPath = path.join(projectRoot, 'temp-runner.mjs');
     fs.writeFileSync(tempRunnerPath, tempRunnerContent);
 
     const child = spawn('node', ['temp-runner.mjs'], {
