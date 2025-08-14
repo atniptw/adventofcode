@@ -109,7 +109,7 @@ export function part2(input: string[]): number {
 ## Common Patterns
 
 When implementing solutions:
-1. Use utilities to reduce boilerplate (see UTILITIES.md for examples)
+1. Use utilities to reduce boilerplate (see README.md utilities section for examples)
 2. Input is always provided as `string[]` (one line per element)
 3. Solutions must return numbers (or strings that coerce to numbers)
 4. Check existing solutions in the same year for patterns and consistency
