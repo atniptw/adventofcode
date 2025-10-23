@@ -4,23 +4,23 @@ describe('Day 01: Trebuchet?!', () => {
   describe('Basic Examples', () => {
     test('part1 examples from AoC', () => {
       const input = [
-        '1abc2',        // → 12
-        'pqr3stu8vwx',  // → 38
-        'a1b2c3d4e5f',  // → 15
-        'treb7uchet'    // → 77
+        '1abc2', // → 12
+        'pqr3stu8vwx', // → 38
+        'a1b2c3d4e5f', // → 15
+        'treb7uchet', // → 77
       ];
       expect(part1(input)).toBe(142); // 12+38+15+77
     });
 
     test('part2 examples from AoC', () => {
       const input = [
-        'two1nine',         // → 29
-        'eightwothree',     // → 83
-        'abcone2threexyz',  // → 13
-        'xtwone3four',      // → 24
+        'two1nine', // → 29
+        'eightwothree', // → 83
+        'abcone2threexyz', // → 13
+        'xtwone3four', // → 24
         '4nineeightseven2', // → 42
-        'zoneight234',      // → 14
-        '7pqrstsixteen'     // → 76
+        'zoneight234', // → 14
+        '7pqrstsixteen', // → 76
       ];
       expect(part2(input)).toBe(281); // 29+83+13+24+42+14+76
     });
@@ -62,23 +62,23 @@ describe('Day 01: Trebuchet?!', () => {
   describe('Critical Overlapping Cases', () => {
     test('overlapping word patterns', () => {
       // These test how the implementation handles overlapping word digits
-      expect(part2(['eightwo'])).toBe(82);     // Should find both "eight" and "two"
-      expect(part2(['oneight'])).toBe(18);     // Should find both "one" and "eight"
-      expect(part2(['twone'])).toBe(21);       // Should find both "two" and "one"
-      expect(part2(['eighthree'])).toBe(83);   // Should find "eight" and "three"
-      expect(part2(['sevenine'])).toBe(79);    // Should find "seven" and "nine"
+      expect(part2(['eightwo'])).toBe(82); // Should find both "eight" and "two"
+      expect(part2(['oneight'])).toBe(18); // Should find both "one" and "eight"
+      expect(part2(['twone'])).toBe(21); // Should find both "two" and "one"
+      expect(part2(['eighthree'])).toBe(83); // Should find "eight" and "three"
+      expect(part2(['sevenine'])).toBe(79); // Should find "seven" and "nine"
     });
 
     test('complex overlapping scenarios', () => {
       expect(part2(['onetwothreefourfive'])).toBe(15); // one...five
-      expect(part2(['nineightsevenine'])).toBe(99);    // nine...nine
-      expect(part2(['threeightwo'])).toBe(32);         // three...two
+      expect(part2(['nineightsevenine'])).toBe(99); // nine...nine
+      expect(part2(['threeightwo'])).toBe(32); // three...two
     });
 
     test('overlapping with numbers', () => {
-      expect(part2(['1eightwo'])).toBe(12);    // 1...two
-      expect(part2(['eightwo3'])).toBe(83);    // eight...3
-      expect(part2(['4oneight5'])).toBe(45);   // 4...5
+      expect(part2(['1eightwo'])).toBe(12); // 1...two
+      expect(part2(['eightwo3'])).toBe(83); // eight...3
+      expect(part2(['4oneight5'])).toBe(45); // 4...5
     });
   });
 
@@ -97,10 +97,10 @@ describe('Day 01: Trebuchet?!', () => {
     });
 
     test('partial word matches', () => {
-      expect(part2(['aaone'])).toBe(11);       // "one" not at start
-      expect(part2(['oneaa'])).toBe(11);       // "one" with suffix
-      expect(part2(['xtwox'])).toBe(22);       // "two" in middle
-      expect(part2(['fiveight'])).toBe(58);    // "five" and "eight"
+      expect(part2(['aaone'])).toBe(11); // "one" not at start
+      expect(part2(['oneaa'])).toBe(11); // "one" with suffix
+      expect(part2(['xtwox'])).toBe(22); // "two" in middle
+      expect(part2(['fiveight'])).toBe(58); // "five" and "eight"
     });
   });
 
@@ -146,18 +146,18 @@ describe('Day 01: Trebuchet?!', () => {
 
     test('multiple lines processing', () => {
       const input = [
-        'one2three',     // 13
-        'four5six',      // 46
-        'seven8nine'     // 79
+        'one2three', // 13
+        'four5six', // 46
+        'seven8nine', // 79
       ];
       expect(part2(input)).toBe(138); // 13+46+79
     });
 
     test('lines with no valid digits', () => {
       const input = [
-        'one2three',     // 13
-        'abcdef',        // 0
-        'four5six'       // 46
+        'one2three', // 13
+        'abcdef', // 0
+        'four5six', // 46
       ];
       expect(part2(input)).toBe(59); // 13+0+46
     });
@@ -167,7 +167,7 @@ describe('Day 01: Trebuchet?!', () => {
     test('long lines', () => {
       const longLine = 'a'.repeat(100) + '1' + 'b'.repeat(100) + '2' + 'c'.repeat(100);
       expect(part1([longLine])).toBe(12);
-      
+
       const longWordLine = 'x'.repeat(50) + 'one' + 'y'.repeat(50) + 'two' + 'z'.repeat(50);
       expect(part2([longWordLine])).toBe(12);
     });

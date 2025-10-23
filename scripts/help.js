@@ -36,8 +36,8 @@ console.log('');
 
 console.log('📋 File Structure:');
 console.log('   src/<year>/day-<DD>.ts           # Solution files');
+console.log('   src/<year>/day-<DD>.spec.ts      # Test files');
 console.log('   src/<year>/inputs/day-<DD>.txt   # Puzzle inputs');
-console.log('   test/<year>/day-<DD>.spec.ts     # Test files');
 console.log('   src/utils/                       # Shared utilities');
 console.log('');
 

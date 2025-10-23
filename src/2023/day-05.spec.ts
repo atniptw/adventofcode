@@ -1,4 +1,12 @@
-import { part1, part2, applyMapping, transformSeedToLocation, parseInput, parseSeedRanges, transformRange } from './day-05';
+import {
+  part1,
+  part2,
+  applyMapping,
+  transformSeedToLocation,
+  parseInput,
+  parseSeedRanges,
+  transformRange,
+} from './day-05';
 import type { Mapping, Range } from './day-05';
 
 describe('Day 5: Seed Location Mapping', () => {

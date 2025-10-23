@@ -1,0 +1,73 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "aoc: Show Advent of Code status",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "aoc-status"],
+      "problemMatcher": [],
+      "group": "none"
+    },
+    {
+      "label": "check: Validate today's solution",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "check-day", "${input:year}", "${input:day}"],
+      "problemMatcher": [],
+      "group": "none"
+    },
+    {
+      "label": "input: Fetch puzzle input",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "fetch-input", "${input:year}", "${input:day}"],
+      "problemMatcher": [],
+      "group": "none"
+    },
+    {
+      "label": "help: Show CLI help",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "help"],
+      "problemMatcher": [],
+      "group": "none"
+    },
+    {
+      "label": "list: List available days",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "list-days", "${input:year}"],
+      "problemMatcher": [],
+      "group": "none"
+    },
+    {
+      "label": "run: Runs the solution for a specific day",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "solve", "${input:year}", "${input:day}"],
+      "problemMatcher": [],
+      "group": "none"
+    },
+    {
+      "label": "start: Create starter for a day",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "start-day", "${input:year}", "${input:day}"],
+      "problemMatcher": [],
+      "group": "none"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "year",
+      "type": "promptString",
+      "description": "Puzzle year"
+    },
+    {
+      "id": "day",
+      "type": "promptString",
+      "description": "Puzzle day"
+    }
+  ]
+}
