@@ -32,19 +32,22 @@ export function part2(_input: string[]): number {
 
 const TEST_TEMPLATE = `import { part1, part2 } from './day-DAY';
 
-describe('Day DAY_NUM', () => {
-    const testInput = [
-        // Add test input here
-    ];
+describe('Day 01', () => {
+  test.each([{ input: ['1'], expected: 2 }])(
+    'part1($input) -> $expected',
+    ({ input, expected }) => {
+      expect(part1(input)).toBe(expected);
+    }
+  );
 
-    test('part1', () => {
-        expect(part1(testInput)).toBe(0); // Update expected value
-    });
-
-    test('part2', () => {
-        expect(part2(testInput)).toBe(0); // Update expected value
-    });
-});`;
+  test.each([{ input: ['1'], expected: 2 }])(
+    'part2($input) -> $expected',
+    ({ input, expected }) => {
+      expect(part2(input)).toBe(expected);
+    }
+  );
+});
+`;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
