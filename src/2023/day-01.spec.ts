@@ -1,4 +1,4 @@
-import { part1, part2 } from '../../src/2023/day-01';
+import { part1, part2 } from './day-01';
 
 describe('Day 01: Trebuchet?!', () => {
   describe('Basic Examples', () => {

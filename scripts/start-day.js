@@ -30,20 +30,20 @@ export function part2(_input: string[]): number {
     return 0;
 }`;
 
-const TEST_TEMPLATE = `import { part1, part2 } from '../../src/YEAR/day-DAY';
+const TEST_TEMPLATE = `import { part1, part2 } from './day-DAY';
 
 describe('Day DAY_NUM', () => {
-  const testInput = [
-    // Add test input here
-  ];
+    const testInput = [
+        // Add test input here
+    ];
 
-  test('part1', () => {
-    expect(part1(testInput)).toBe(0); // Update expected value
-  });
+    test('part1', () => {
+        expect(part1(testInput)).toBe(0); // Update expected value
+    });
 
-  test('part2', () => {
-    expect(part2(testInput)).toBe(0); // Update expected value
-  });
+    test('part2', () => {
+        expect(part2(testInput)).toBe(0); // Update expected value
+    });
 });`;
 
 const __filename = fileURLToPath(import.meta.url);
@@ -81,9 +81,10 @@ console.log(`🎄 Starting Advent of Code ${year} Day ${day}...`);
 console.log('\n📁 Setting up day files...');
 
 const srcYearPath = path.join(__dirname, '..', 'src', year);
-const testYearPath = path.join(__dirname, '..', 'test', year);
+// Place tests next to solution files under src/<year>
+const testYearPath = path.join(__dirname, '..', 'src', year);
 
-// Create year directories if they don't exist
+// Create year directories if they don't exist (tests will colocate in src/year)
 fs.mkdirSync(srcYearPath, { recursive: true });
 fs.mkdirSync(testYearPath, { recursive: true });
 fs.mkdirSync(path.join(srcYearPath, 'inputs'), { recursive: true });
