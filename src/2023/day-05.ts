@@ -74,7 +74,7 @@ export function parseInput(input: string[]): ParsedInput {
         .trim()
         .split(/\s+/)
         .map((n) => parseInt(n));
-        currentCategory.mappings.push({ destStart, sourceStart, length });
+      currentCategory.mappings.push({ destStart, sourceStart, length });
     }
     // Skip empty lines
   }

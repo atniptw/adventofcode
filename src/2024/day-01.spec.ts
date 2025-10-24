@@ -14,10 +14,10 @@ describe('Day 01', () => {
     expect(part1(input)).toBe(expected);
   });
 
-  test.each([{ input: ['1'], expected: 0 }])(
-    'part2($input) -> $expected',
-    ({ input, expected }) => {
-      expect(part2(input)).toBe(expected);
-    }
-  );
+  test.each([
+    { input: ['3   4', '4   3', '2   5', '1   3', '3   9', '3   3'], expected: 31 },
+    { input: ['3   3', '0   3', '0   3'], expected: 9 },
+  ])('part2($input) -> $expected', ({ input, expected }) => {
+    expect(part2(input)).toBe(expected);
+  });
 });

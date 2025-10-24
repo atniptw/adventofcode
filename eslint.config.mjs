@@ -9,7 +9,6 @@ export default tseslint.config(
   ...tseslint.configs.recommended,
   ...tseslint.configs.strict,
 
-
   // Global ignores for build artifacts and deps
   {
     ignores: ['**/node_modules/**', '**/dist/**', '**/build/**'],
@@ -41,15 +40,12 @@ export default tseslint.config(
       '@typescript-eslint/no-floating-promises': 'error',
       '@typescript-eslint/no-misused-promises': 'error',
       '@typescript-eslint/await-thenable': 'error',
-      '@typescript-eslint/strict-boolean-expressions': 'error', 
+      '@typescript-eslint/strict-boolean-expressions': 'error',
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/explicit-function-return-type': 'warn',
       '@typescript-eslint/prefer-nullish-coalescing': 'warn',
       '@typescript-eslint/no-non-null-assertion': 'off',
-      '@typescript-eslint/consistent-type-imports': [
-        'error',
-        { prefer: 'type-imports' },
-      ],
+      '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
 
       // General best practices
       'no-console': ['warn', { allow: ['warn', 'error'] }],

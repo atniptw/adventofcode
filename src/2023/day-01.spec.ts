@@ -165,10 +165,10 @@ describe('Day 01: Trebuchet?!', () => {
 
   describe('Performance and Stress Tests', () => {
     test('long lines', () => {
-      const longLine = `${'a'.repeat(100)  }1${  'b'.repeat(100)  }2${  'c'.repeat(100)}`;
+      const longLine = `${'a'.repeat(100)}1${'b'.repeat(100)}2${'c'.repeat(100)}`;
       expect(part1([longLine])).toBe(12);
 
-      const longWordLine = `${'x'.repeat(50)  }one${  'y'.repeat(50)  }two${  'z'.repeat(50)}`;
+      const longWordLine = `${'x'.repeat(50)}one${'y'.repeat(50)}two${'z'.repeat(50)}`;
       expect(part2([longWordLine])).toBe(12);
     });
 
