@@ -17,7 +17,7 @@ export function parseNumberColumns(input: string[], separator: string = ' '): nu
   input.forEach((line) => {
     const values = line.split(separator).filter((s) => s.trim() !== '');
     values.forEach((value, index) => {
-      if (!columns[index]) columns[index] = [];
+      columns[index] ??= [];
       columns[index].push(parseInt(value.trim()));
     });
   });

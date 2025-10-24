@@ -1,13 +1,5 @@
-import {
-  part1,
-  part2,
-  applyMapping,
-  transformSeedToLocation,
-  parseInput,
-  parseSeedRanges,
-  transformRange,
-} from './day-05';
-import type { Mapping, Range } from './day-05';
+import { applyMapping } from './day-05.js';
+import type { Mapping } from './day-05.js';
 
 describe('Day 5: Seed Location Mapping', () => {
   test('maps number within range', () => {

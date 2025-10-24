@@ -6,7 +6,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 // Template content (embedded to avoid external template files)
-const SOLUTION_TEMPLATE = `// import { parseNumbers, parseNumberGrid, parseCharGrid, Grid, frequency, count, sum } from '../utils';
+const SOLUTION_TEMPLATE = `// import { parseNumbers, parseNumberGrid, parseCharGrid, Grid, frequency, count, sum } from '../utils/index.js';
 
 export function part1(_input: string[]): number {
     // Example patterns you can use:

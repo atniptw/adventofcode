@@ -1,4 +1,4 @@
-import { part1, part2 } from './day-02';
+import { part1, part2 } from './day-02.js';
 
 describe('Day 02', () => {
   describe('Basic Functionality', () => {

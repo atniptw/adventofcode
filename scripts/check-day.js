@@ -132,7 +132,7 @@ try {
     console.log('   ⚠️  Not compiled yet');
     suggestions.push('Run: npm run build');
   }
-} catch (error) {
+} catch {
   console.log('   ❌ Build check failed');
   suggestions.push('Run: npm run build');
 }

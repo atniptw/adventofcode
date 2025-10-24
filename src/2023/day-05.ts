@@ -70,11 +70,11 @@ export function parseInput(input: string[]): ParsedInput {
       categories.push(currentCategory);
     } else if (line.trim() && currentCategory) {
       // Parse mapping line: "50 98 2"
-      const [destStart, sourceStart, length] = line
+      const [destStart = 0, sourceStart = 0, length = 0] = line
         .trim()
         .split(/\s+/)
         .map((n) => parseInt(n));
-      currentCategory.mappings.push({ destStart, sourceStart, length });
+        currentCategory.mappings.push({ destStart, sourceStart, length });
     }
     // Skip empty lines
   }
@@ -105,8 +105,8 @@ export function parseSeedRanges(seedLine: string): SeedRangeResult {
 
   // Parse pairs of (start, length)
   for (let i = 0; i < numbers.length - 1; i += 2) {
-    const start = numbers[i];
-    const length = numbers[i + 1];
+    const start = numbers[i] ?? 0;
+    const length = numbers[i + 1] ?? 0;
     seedRanges.push({ start, end: start + length });
   }
 
@@ -174,8 +174,8 @@ export function part2(input: string[]): number {
   // Parse seed pairs as ranges
   let ranges: Range[] = [];
   for (let i = 0; i < seeds.length - 1; i += 2) {
-    const start = seeds[i];
-    const length = seeds[i + 1];
+    const start = seeds[i] ?? 0;
+    const length = seeds[i + 1] ?? 0;
     ranges.push({ start, end: start + length });
   }
 

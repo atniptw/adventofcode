@@ -1,4 +1,4 @@
-import { part1, part2 } from './day-03';
+import { part1 } from './day-03.js';
 
 describe('Day 03 - Gear Ratios', () => {
   describe('Part 1 - Part Numbers', () => {

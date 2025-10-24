@@ -17,13 +17,13 @@ function parseGrid(input: string[]): { numbers: NumberInfo[]; symbols: SymbolInf
 
   for (let row = 0; row < input.length; row++) {
     const line = input[row];
-    if (!line) continue;
+    if (line === undefined || line.length === 0) continue;
 
     let col = 0;
 
     while (col < line.length) {
       const char = line[col];
-      if (!char) {
+      if (char === undefined || char.length === 0) {
         col++;
         continue;
       }
@@ -32,7 +32,7 @@ function parseGrid(input: string[]): { numbers: NumberInfo[]; symbols: SymbolInf
         const startCol = col;
         let numStr = '';
 
-        while (col < line.length && line[col] && /\d/.test(line[col]!)) {
+        while (col < line.length && line[col] !== undefined && /\d/.test(line[col]!)) {
           numStr += line[col]!;
           col++;
         }

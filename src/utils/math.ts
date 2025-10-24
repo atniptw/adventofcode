@@ -21,7 +21,8 @@ export function count<T>(array: T[], predicate: (item: T) => boolean): number {
 export function frequency<T>(array: T[]): Map<T, number> {
   const freq = new Map<T, number>();
   array.forEach((item) => {
-    freq.set(item, (freq.get(item) || 0) + 1);
+    const count = freq.get(item);
+    freq.set(item, (count ?? 0) + 1);
   });
   return freq;
 }
@@ -29,7 +30,9 @@ export function frequency<T>(array: T[]): Map<T, number> {
 export function isAscending(numbers: number[], maxDiff?: number): boolean {
   return numbers.every((current, index) => {
     if (index === 0) return true;
-    const diff = current - numbers[index - 1];
+    const prev = numbers[index - 1];
+    if (prev === undefined) return false;
+    const diff = current - prev;
     return diff > 0 && (maxDiff === undefined || diff <= maxDiff);
   });
 }
@@ -37,7 +40,9 @@ export function isAscending(numbers: number[], maxDiff?: number): boolean {
 export function isDescending(numbers: number[], maxDiff?: number): boolean {
   return numbers.every((current, index) => {
     if (index === 0) return true;
-    const diff = numbers[index - 1] - current;
+    const prev = numbers[index - 1];
+    if (prev === undefined) return false;
+    const diff = prev - current;
     return diff > 0 && (maxDiff === undefined || diff <= maxDiff);
   });
 }

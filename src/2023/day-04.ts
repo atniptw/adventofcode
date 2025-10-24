@@ -9,8 +9,8 @@ function parseNumbers(numbersStr: string): Set<number> {
 }
 
 function countMatches(line: string): number {
-  const [cardPart, numbersPart] = line.split(':');
-  const [winningStr, yourStr] = numbersPart.split('|');
+  const [_cardPart, numbersPart = ''] = line.split(':');
+  const [winningStr = '', yourStr = ''] = numbersPart.split('|');
 
   const winningNumbers = parseNumbers(winningStr);
   const yourNumbers = parseNumbers(yourStr);
@@ -43,11 +43,11 @@ export function part1(input: string[]): number {
 export function part2(input: string[]): number {
   if (input.length === 0) return 0;
 
-  const matchCounts = input.map(countMatches);
+  const matchCounts: number[] = input.map(countMatches);
   const cardCounts = new Array(input.length).fill(1);
 
   for (let i = 0; i < input.length; i++) {
-    const matches = matchCounts[i];
+    const matches = matchCounts[i] ?? 0;
     const currentCardCount = cardCounts[i];
 
     for (let j = 1; j <= matches && i + j < input.length; j++) {

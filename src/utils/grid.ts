@@ -10,7 +10,10 @@ export type Direction =
   | 'down-right';
 
 export class Grid<T> {
-  constructor(private data: T[][]) {}
+  private data: T[][];
+  constructor(data: T[][]) {
+    this.data = data;
+  }
 
   static fromStrings(input: string[]): Grid<string> {
     return new Grid(input.map((line) => line.split('')));
@@ -21,7 +24,8 @@ export class Grid<T> {
   }
 
   get cols(): number {
-    return this.data[0]?.length || 0;
+    const length = this.data[0]?.length;
+    return length ?? 0;
   }
 
   get(point: Point): T | undefined {
@@ -29,9 +33,10 @@ export class Grid<T> {
   }
 
   set(point: Point, value: T): void {
-    if (this.isInBounds(point)) {
-      this.data[point.row][point.col] = value;
-    }
+    if (!this.isInBounds(point)) return;
+    const rowArr = this.data[point.row];
+    if (!rowArr) return;
+    rowArr[point.col] = value;
   }
 
   isInBounds(point: Point): boolean {
@@ -42,7 +47,8 @@ export class Grid<T> {
     const points: Point[] = [];
     for (let row = 0; row < this.rows; row++) {
       for (let col = 0; col < this.cols; col++) {
-        if (predicate(this.data[row][col])) {
+        const value = this.data[row]?.[col];
+        if (value !== undefined && predicate(value)) {
           points.push({ row, col });
         }
       }
@@ -53,7 +59,8 @@ export class Grid<T> {
   findFirst(predicate: (value: T) => boolean): Point | undefined {
     for (let row = 0; row < this.rows; row++) {
       for (let col = 0; col < this.cols; col++) {
-        if (predicate(this.data[row][col])) {
+        const value = this.data[row]?.[col];
+        if (value !== undefined && predicate(value)) {
           return { row, col };
         }
       }
@@ -133,8 +140,12 @@ export class Grid<T> {
 
   forEach(callback: (value: T, point: Point) => void): void {
     for (let row = 0; row < this.rows; row++) {
+      if (!this.data[row]) continue;
       for (let col = 0; col < this.cols; col++) {
-        callback(this.data[row][col], { row, col });
+        const value = this.data[row]?.[col];
+        if (value !== undefined) {
+          callback(value, { row, col });
+        }
       }
     }
   }
@@ -144,7 +155,7 @@ export class Grid<T> {
     for (let row = 0; row < this.rows; row++) {
       newData[row] = [];
       for (let col = 0; col < this.cols; col++) {
-        newData[row][col] = callback(this.data[row][col], { row, col });
+        newData[row]![col] = callback(this.data[row]![col]!, { row, col });
       }
     }
     return new Grid(newData);

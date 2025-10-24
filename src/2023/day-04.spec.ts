@@ -1,4 +1,4 @@
-import { part1, part2 } from './day-04';
+import { part1 } from './day-04.js';
 
 describe('Day 4: Scratchcards', () => {
   test('example from AoC - multiple cards with varying matches', () => {

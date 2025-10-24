@@ -1,5 +1,3 @@
-// import { sum } from '../utils';
-
 function sum(numbers: number[]): number {
   return numbers.reduce((acc, curr) => acc + curr, 0);
 }
@@ -37,9 +35,12 @@ export function part2(input: string[]): number {
 
     // Find all digits (numeric and word) in order of appearance
     for (let i = 0; i < line.length; i++) {
+      // Use charAt to get a string instead of possibly undefined via indexing
+      const ch = line.charAt(i);
+
       // Check for numeric digit
-      if (/\d/.test(line[i])) {
-        digits.push(line[i]);
+      if (/\d/.test(ch)) {
+        digits.push(ch);
       } else {
         // Check for word digits starting at this position
         for (const [word, digit] of Object.entries(digitWords)) {
@@ -55,8 +56,8 @@ export function part2(input: string[]): number {
       return 0;
     }
 
-    const first = digits[0];
-    const last = digits[digits.length - 1];
+    const first = digits[0] ?? '0';
+    const last = digits[digits.length - 1] ?? '0';
     return parseInt(first + last, 10);
   });
 
