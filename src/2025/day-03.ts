@@ -12,10 +12,10 @@ export function largestNumber(num: string, size: number): number {
     // Find the largest digit in the valid window
     let maxDigit = -1;
     let maxPos = -1;
-    
+
     // We need 'remaining' digits, so we must leave enough digits after our choice
     const endIdx = num.length - remaining + 1;
-    
+
     for (let i = startIdx; i < endIdx; i++) {
       const digit = parseInt(num.charAt(i), 10);
       if (digit > maxDigit) {
@@ -23,7 +23,7 @@ export function largestNumber(num: string, size: number): number {
         maxPos = i;
       }
     }
-    
+
     result += maxDigit;
     startIdx = maxPos + 1;
     remaining--;
