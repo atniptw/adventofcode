@@ -34,7 +34,7 @@ export function largestNumber(num: string, size: number): number {
 
 export function part1(input: string[]): number {
   let sum = 0;
-  // const numbers = parseNumbers(input);
+
   input.forEach((line) => {
     sum += largestNumber(line, 2);
   });
@@ -44,7 +44,7 @@ export function part1(input: string[]): number {
 
 export function part2(input: string[]): number {
   let sum = 0;
-  // const numbers = parseNumbers(input);
+
   input.forEach((line) => {
     sum += largestNumber(line, 12);
   });

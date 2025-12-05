@@ -30,9 +30,9 @@ export function part2(_input: string[]): number {
     return 0;
 }`;
 
-const TEST_TEMPLATE = `import { part1, part2 } from './day-DAY';
+const TEST_TEMPLATE = `import { part1, part2 } from './day-DAY.js';
 
-describe('Day 01', () => {
+describe('Day DAY', () => {
   test.each([{ input: ['1'], expected: 2 }])(
     'part1($input) -> $expected',
     ({ input, expected }) => {
