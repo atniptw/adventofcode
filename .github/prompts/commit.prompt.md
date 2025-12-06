@@ -26,6 +26,7 @@ Please analyze my staged git changes and create a well-formatted commit message 
 ```
 
 ### Types
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `refactor`: Code change that neither fixes a bug nor adds a feature
