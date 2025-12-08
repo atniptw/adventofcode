@@ -1,4 +1,4 @@
-import { parseNumberGrid } from '../utils/index.js';
+import { parseNumberGrid, sum } from '../utils/index.js';
 
 function applyOperator(numbers: number[], operator: string): number {
   switch (operator) {
