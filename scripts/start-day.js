@@ -40,7 +40,7 @@ describe('Day DAY', () => {
     }
   );
 
-  test.each([{ input: ['1'], expected: 2 }])(
+  test.each([{ input: ['1'], expected: 0 }])(
     'part2($input) -> $expected',
     ({ input, expected }) => {
       expect(part2(input)).toBe(expected);
