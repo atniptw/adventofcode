@@ -23,7 +23,5 @@ export function part1(input: string[]): number {
 }
 
 export function part2(_input: string[]): number {
-  let maxArea = 0;
-
-  return maxArea;
+  return 0;
 }

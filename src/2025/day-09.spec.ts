@@ -10,7 +10,7 @@ describe('Day 09', () => {
     expect(part1(input)).toBe(expected);
   });
 
-  test.skip.each([
+  test.todo.each([
     {
       input: ['7,1', '11,1', '11,7', '9,7', '9,5', '2,5', '2,3', '7,3'],
       expected: 24,
