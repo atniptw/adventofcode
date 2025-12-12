@@ -33,7 +33,7 @@ export function part2(_input: string[]): number {
 const TEST_TEMPLATE = `import { part1, part2 } from './day-DAY.js';
 
 describe('Day DAY', () => {
-  test.todo.each([{ input: ['1'], expected: 2 }])(
+  test.todo.each([{ input: ['1'], expected: 0 }])(
     'part1($input) -> $expected',
     ({ input, expected }) => {
       expect(part1(input)).toBe(expected);
