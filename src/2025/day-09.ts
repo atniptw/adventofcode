@@ -9,7 +9,9 @@ export function part1(input: string[]): number {
   const points = parseNumberGrid(input, ',');
 
   let maxArea = 0;
-  const validPoints = points.filter(p => isDefined(p) && p.length >= 2) as Array<[number, number]>;
+  const validPoints = points.filter((p) => isDefined(p) && p.length >= 2) as Array<
+    [number, number]
+  >;
   for (const [x1, y1] of validPoints) {
     for (const [x2, y2] of validPoints) {
       const rectArea = areaOfBox(x1, y1, x2, y2);
@@ -25,4 +27,3 @@ export function part2(_input: string[]): number {
 
   return maxArea;
 }
-
