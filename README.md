@@ -11,8 +11,8 @@ npm install
 # Start working on a new day (creates files + downloads input)
 npm run start-day 2024 5
 
-# Check project status anytime
-npm run aoc-status
+# List available days
+npm run list-days 2025
 
 # Run your solution
 npm run solve 2024 5
@@ -20,7 +20,7 @@ npm run solve 2024 5
 
 ## 🎯 Key Features
 
-- **🤖 AI-Agent Friendly** - Self-documenting commands with comprehensive status reporting
+- **🤖 AI-Agent Friendly** - Self-documenting commands and helpful tooling
 - **⚡ Lightning Fast** - Vitest for instant test feedback
 - **🧰 Rich Utilities** - Grid operations, parsing, math functions, and more
 - **🔒 Input Protection** - Automatic input file management respecting AoC creator's wishes
@@ -41,10 +41,9 @@ advent-of-code/
 
 ## 🎮 Commands
 
-### 🔍 Discovery & Status
+### 🔍 Discovery
 
 ```bash
-npm run aoc-status          # Complete project overview
 npm run list-days [year]    # Detailed day-by-day status
 npm run check-day <year> <day>  # Validate specific day
 npm run help                # All available commands
@@ -203,7 +202,6 @@ This project is optimized for AI agents with:
 
 ### Self-Discovery Commands
 
-- `npm run aoc-status` - Instant project understanding
 - `npm run list-days` - Visual progress overview
 - `npm run check-day` - Comprehensive validation
 
@@ -287,11 +285,11 @@ npm run fetch-input 2024 5  # Re-download if needed
    echo "AOC_SESSION=your_session_token" > .env
    ```
 
-3. **Check status:**
+3. **Discover implemented days:**
 
-   ```bash
-   npm run aoc-status
-   ```
+```bash
+npm run list-days 2025
+```
 
 4. **Start solving:**
    ```bash
@@ -350,7 +348,7 @@ export function part2(input: string[]): number {
 ## 🎯 Tips for Success
 
 - **Start each day with `npm run start-day <year> <day>`**
-- **Use `npm run aoc-status` to understand the project state**
+- **Use `npm run list-days` to understand the project state**
 - **Leverage utilities** - they handle common AoC patterns
 - **Test incrementally** with `npm test -- day-XX`
 - **Check validation** with `npm run check-day` before solving

@@ -8,7 +8,6 @@
     "solve": "node scripts/runner.js",
     "start-day": "node scripts/start-day.js",
     "fetch-input": "node scripts/fetch-input.js",
-    "aoc-status": "node scripts/aoc-status.js",
     "list-days": "node scripts/list-days.js",
     "check-day": "node scripts/check-day.js",
     "help": "node scripts/help.js",

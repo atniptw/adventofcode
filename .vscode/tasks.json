@@ -2,10 +2,10 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "aoc: Show Advent of Code status",
+      "label": "list: List available days",
       "type": "shell",
       "command": "npm",
-      "args": ["run", "aoc-status"],
+      "args": ["run", "list-days", "${input:year}"],
       "problemMatcher": [],
       "group": "none"
     },
@@ -30,14 +30,6 @@
       "type": "shell",
       "command": "npm",
       "args": ["run", "help"],
-      "problemMatcher": [],
-      "group": "none"
-    },
-    {
-      "label": "list: List available days",
-      "type": "shell",
-      "command": "npm",
-      "args": ["run", "list-days", "${input:year}"],
       "problemMatcher": [],
       "group": "none"
     },

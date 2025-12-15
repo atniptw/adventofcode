@@ -7,9 +7,9 @@ function parseInputToGraph(input: string[], graph: Record<string, string[]>): vo
       graph[node] =
         isDefined(neighbors) && neighbors.length > 0
           ? neighbors
-            .split(' ')
-            .map((s) => s.trim())
-            .filter(Boolean)
+              .split(' ')
+              .map((s) => s.trim())
+              .filter(Boolean)
           : [];
     }
   }
@@ -28,10 +28,7 @@ function buildReverseGraph(graph: Record<string, string[]>): Record<string, stri
 }
 
 // Compute set of nodes that can reach a given end node
-function computeCanReachEnd(
-  graph: Record<string, string[]>,
-  end: string,
-): Set<string> {
+function computeCanReachEnd(graph: Record<string, string[]>, end: string): Set<string> {
   const reverse = buildReverseGraph(graph);
   const canReachEnd = new Set<string>();
   const stack = [end];
@@ -51,7 +48,7 @@ function countPaths(
   graph: Record<string, string[]>,
   canReachEnd: Set<string>,
   source: string,
-  target: string,
+  target: string
 ): number {
   const pathCacheToTarget = new Map<string, number>();
   function dp(u: string): number {

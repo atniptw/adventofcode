@@ -9,7 +9,6 @@ console.log('   npm test -- day-<DD>             # Run tests for specific day');
 console.log('');
 
 console.log('🔍 Discovery & Status:');
-console.log('   npm run aoc-status               # Project overview');
 console.log('   npm run list-days [year]         # List all implemented days');
 console.log('   npm run check-day <year> <day>   # Validate specific day');
 console.log('');
@@ -42,12 +41,12 @@ console.log('   src/utils/                       # Shared utilities');
 console.log('');
 
 console.log('🤖 AI Agent Tips:');
-console.log('   • Always run "npm run aoc-status" first to understand the project');
+console.log('   • Use "npm run list-days [year]" to understand the project');
 console.log('   • Use "npm run list-days" to see what\'s implemented');
 console.log('   • Use "npm run check-day <year> <day>" to validate before solving');
-console.log('   • Check CLAUDE.md for detailed documentation');
+console.log('   • See .github/copilot-instructions.md for detailed documentation');
 console.log('');
 
 console.log('❓ Need more help?');
-console.log('   cat CLAUDE.md                    # Full documentation');
+console.log('   cat .github/copilot-instructions.md # Full documentation');
 console.log('   npm run <command> --help         # Command-specific help');

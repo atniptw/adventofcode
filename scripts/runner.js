@@ -40,7 +40,7 @@ const srcPath = path.join(__dirname, '..', 'src', year);
 if (!fs.existsSync(srcPath)) {
   console.error(`❌ Year ${year} directory not found`);
   console.log(`💡 Create it with: npm run start-day ${year} 1`);
-  console.log(`📊 See status: npm run aoc-status`);
+  console.log(`📊 List implemented days: npm run list-days [year]`);
   process.exit(1);
 }
 
