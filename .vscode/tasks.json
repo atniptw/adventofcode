@@ -6,48 +6,42 @@
       "type": "shell",
       "command": "npm",
       "args": ["run", "list-days", "${input:year}"],
-      "problemMatcher": [],
-      "group": "none"
+      "problemMatcher": []
     },
     {
       "label": "check: Validate today's solution",
       "type": "shell",
       "command": "npm",
       "args": ["run", "check-day", "${input:year}", "${input:day}"],
-      "problemMatcher": [],
-      "group": "none"
+      "problemMatcher": []
     },
     {
       "label": "input: Fetch puzzle input",
       "type": "shell",
       "command": "npm",
       "args": ["run", "fetch-input", "${input:year}", "${input:day}"],
-      "problemMatcher": [],
-      "group": "none"
+      "problemMatcher": []
     },
     {
       "label": "help: Show CLI help",
       "type": "shell",
       "command": "npm",
       "args": ["run", "help"],
-      "problemMatcher": [],
-      "group": "none"
+      "problemMatcher": []
     },
     {
       "label": "run: Runs the solution for a specific day",
       "type": "shell",
       "command": "npm",
       "args": ["run", "solve", "${input:year}", "${input:day}"],
-      "problemMatcher": [],
-      "group": "none"
+      "problemMatcher": []
     },
     {
       "label": "start: Create starter for a day",
       "type": "shell",
       "command": "npm",
       "args": ["run", "start-day", "${input:year}", "${input:day}"],
-      "problemMatcher": [],
-      "group": "none"
+      "problemMatcher": []
     }
   ],
   "inputs": [
