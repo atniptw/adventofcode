@@ -1,6 +1,10 @@
 type Cell = '.' | '^' | 'S' | string;
 
-function simulatePaths(input: string[]) {
+function simulatePaths(input: string[]): {
+  reachedDistinct: number;
+  reachedTotal: number;
+  bottomTotal: number;
+} {
   const rows = input.length;
   const cols = input[0]?.length ?? 0;
   const reach: number[][] = Array.from({ length: rows }, () =>

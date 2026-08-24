@@ -1,6 +1,6 @@
 import { parseNumberGrid } from '../utils/index.js';
 
-function parseInput(input: string[]) {
+function parseInput(input: string[]): { left: number[]; right: number[] } {
   const data = parseNumberGrid(input);
   const left: number[] = [];
   const right: number[] = [];

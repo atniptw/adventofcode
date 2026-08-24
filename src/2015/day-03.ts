@@ -1,8 +1,8 @@
 type Position = [number, number];
 
-const key = (p: Position) => `${p[0]},${p[1]}`;
+const key = (p: Position): string => `${p[0]},${p[1]}`;
 
-function move(pos: Position, dir: string) {
+function move(pos: Position, dir: string): void {
   switch (dir) {
     case '^':
       pos[1]++;
@@ -22,8 +22,8 @@ function move(pos: Position, dir: string) {
 export function part1(input: string[]): number {
   let total = 0;
   for (const line of input) {
-    let houses = new Set<string>();
-    let pos: Position = [0, 0];
+    const houses = new Set<string>();
+    const pos: Position = [0, 0];
     const directions = line.split('');
     houses.add(key(pos));
     for (const dir of directions) {
@@ -38,9 +38,9 @@ export function part1(input: string[]): number {
 export function part2(input: string[]): number {
   let total = 0;
   for (const line of input) {
-    let houses = new Set<string>();
-    let santaPos: Position = [0, 0];
-    let roboPos: Position = [0, 0];
+    const houses = new Set<string>();
+    const santaPos: Position = [0, 0];
+    const roboPos: Position = [0, 0];
     const directions = line.split('');
     houses.add(key(santaPos));
     for (let i = 0; i < directions.length; i++) {
