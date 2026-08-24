@@ -145,3 +145,6 @@ src/*/problems/
 
 # Temporary runner files
 temp-runner.ts
+
+# Local Claude Code settings
+.claude/
