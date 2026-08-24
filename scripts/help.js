@@ -44,9 +44,9 @@ console.log('🤖 AI Agent Tips:');
 console.log('   • Use "npm run list-days [year]" to understand the project');
 console.log('   • Use "npm run list-days" to see what\'s implemented');
 console.log('   • Use "npm run check-day <year> <day>" to validate before solving');
-console.log('   • See .github/copilot-instructions.md for detailed documentation');
+console.log('   • See CLAUDE.md for detailed documentation');
 console.log('');
 
 console.log('❓ Need more help?');
-console.log('   cat .github/copilot-instructions.md # Full documentation');
+console.log('   cat CLAUDE.md                    # Full documentation');
 console.log('   npm run <command> --help         # Command-specific help');
