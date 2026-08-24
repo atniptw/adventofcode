@@ -1,5 +1,3 @@
-// import { parseNumbers, parseNumberGrid, parseCharGrid, Grid, frequency, count, sum } from '../utils/index.js';
-
 export function part1(input: string[]): number {
   let niceCount = 0;
   for (const line of input) {

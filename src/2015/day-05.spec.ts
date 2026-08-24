@@ -17,10 +17,7 @@ describe('Day 05', () => {
     { input: ['aaa'], expected: 0 },
     { input: ['uurcxstgmygtbstg'], expected: 0 },
     { input: ['ieodomkazucvgmuy'], expected: 0 },
-  ])(
-    'part2($input) -> $expected',
-    ({ input, expected }) => {
-      expect(part2(input)).toBe(expected);
-    }
-  );
+  ])('part2($input) -> $expected', ({ input, expected }) => {
+    expect(part2(input)).toBe(expected);
+  });
 });

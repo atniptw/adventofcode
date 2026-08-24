@@ -24,11 +24,3 @@ export function parseNumberColumns(input: string[], separator: string = ' '): nu
 
   return columns;
 }
-
-export function parseCharGrid(input: string[]): string[][] {
-  return input.map((line) => line.split(''));
-}
-
-export function joinLines(input: string[]): string {
-  return input.join('');
-}

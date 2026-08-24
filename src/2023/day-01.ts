@@ -1,6 +1,4 @@
-function sum(numbers: number[]): number {
-  return numbers.reduce((acc, curr) => acc + curr, 0);
-}
+import { sum } from '../utils/index.js';
 
 export function part1(input: string[]): number {
   const calibrationValues = input.map((line) => {

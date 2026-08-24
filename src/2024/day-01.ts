@@ -1,16 +1,7 @@
-import { parseNumberGrid } from '../utils/index.js';
+import { parseNumberColumns } from '../utils/index.js';
 
 function parseInput(input: string[]): { left: number[]; right: number[] } {
-  const data = parseNumberGrid(input);
-  const left: number[] = [];
-  const right: number[] = [];
-
-  data.forEach((line: (number | undefined)[]) => {
-    const [l, r] = line;
-    left.push(l!);
-    right.push(r!);
-  });
-
+  const [left = [], right = []] = parseNumberColumns(input);
   return { left, right };
 }
 

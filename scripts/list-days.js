@@ -72,13 +72,13 @@ function formatSize(bytes) {
 for (const year of years) {
   console.log(`\n📅 Year ${year}:`);
 
-  const yearPath = path.join(yearPath, year);
-  const inputsPath = path.join(yearPath, 'inputs');
+  const yearDir = path.join(yearPath, year);
+  const inputsPath = path.join(yearDir, 'inputs');
 
   // Get all solution files
-  const solutionFiles = fs.existsSync(yearPath)
+  const solutionFiles = fs.existsSync(yearDir)
     ? fs
-        .readdirSync(yearPath)
+        .readdirSync(yearDir)
         .filter((file) => file.match(/^day-\d{2}\.ts$/))
         .sort()
     : [];
@@ -99,8 +99,8 @@ for (const year of years) {
     const day = dayMatch[1];
     const dayNum = parseInt(day);
 
-    const solutionFile = path.join(yearPath, file);
-    const testFile = path.join(yearPath, `day-${day}.spec.ts`);
+    const solutionFile = path.join(yearDir, file);
+    const testFile = path.join(yearDir, `day-${day}.spec.ts`);
     const inputFile = path.join(inputsPath, `day-${day}.txt`);
 
     const solutionSize = getFileSize(solutionFile);

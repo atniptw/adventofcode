@@ -82,6 +82,5 @@ export function part1(input: string[]): number {
 }
 
 export function part2(_input: string[]): number {
-  // return input.reduce((total, line) => total + calculateMovesForJoltages(line), 0);
   return 0;
 }
