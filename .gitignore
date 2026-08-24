@@ -138,5 +138,10 @@ dist
 years/*/src/inputs/day-*.txt
 packages/*/src/inputs/*.txt
 
+# Advent of Code - DO NOT COMMIT PUZZLE TEXT
+# Fetched problem prompts and local submission-tracking state; puzzle text is
+# also not allowed to be redistributed publicly.
+src/*/problems/
+
 # Temporary runner files
 temp-runner.ts

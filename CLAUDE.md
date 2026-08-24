@@ -12,6 +12,8 @@ Single-package TypeScript (strict ESM) solutions for [Advent of Code](https://ad
 npm run start-day <year> <day>   # scaffold day-<DD>.ts + day-<DD>.spec.ts + inputs/day-<DD>.txt, then fetch input
 npm run solve <year> <day> [1|2] # build + run a day's solution against its input file (omit part for both)
 npm run fetch-input <year> <day> # (re)download puzzle input; uses AOC_SESSION from .env
+npm run get-problem <year> <day> # fetch + save puzzle prompt text to src/<year>/problems/day-<DD>.md
+npm run submit <year> <day> <part> [answer] # compute (or take) an answer, confirm, then submit it
 npm run check-day <year> <day>   # validate a day: files exist, exports present, input non-empty, build status
 npm run list-days [year]         # status overview of implemented days
 npm run help                     # list all CLI commands
@@ -27,19 +29,21 @@ npm run check                    # typecheck && lint && test — run before cons
 npm run build                    # tsc -> build/<year>/day-<DD>.js (runner does this automatically)
 ```
 
-VS Code tasks (`.vscode/tasks.json`) mirror `list-days`, `check-day`, `fetch-input`, `help`, `solve` (as "run"), and `start-day` (as "start"), each prompting for year/day.
+VS Code tasks (`.vscode/tasks.json`) mirror `list-days`, `check-day`, `fetch-input`, `get-problem` (as "problem"), `submit`, `help`, `solve` (as "run"), and `start-day` (as "start"), each prompting for year/day (and part, for `submit`).
 
 ## Architecture
 
 - `src/<year>/day-<DD>.ts` — one file per puzzle day, must export `part1(input: string[]): number` and `part2(input: string[]): number`. Input is the puzzle input split into lines (blank lines preserved); parse it internally rather than expecting pre-parsed data.
 - `src/<year>/day-<DD>.spec.ts` — colocated Vitest spec (not under a separate `test/` dir), importing from `./day-DD.js` (note the `.js` extension on a `.ts` import — required by ESM/NodeNext resolution). Uses `describe` + `test.each` with `{ input, expected }` fixtures; new scaffolds start with `test.todo.each`.
 - `src/<year>/inputs/day-DD.txt` — personal puzzle input, git-ignored (AoC forbids sharing inputs). Never add these to git even via `git add -A`.
+- `src/<year>/problems/day-DD.md` — fetched puzzle prompt text, and `day-DD.state.json` — local submission-tracking state (solved status, accepted answer, wrong guesses per part). Both git-ignored; puzzle text isn't allowed to be redistributed either.
 - `src/utils/` — shared helpers, all re-exported from `src/utils/index.ts`:
   - `parsing.ts`: `parseNumbers`, `parseNumberGrid`, `parseNumberColumns`, `parseCharGrid`, `joinLines`
   - `grid.ts`: `Grid<T>` class — `fromStrings`, `get`/`set`, `isInBounds`, `findAll`/`findFirst`, `getNeighbor(s)`, `getLine` (walk in a `Direction`), `countWordOccurrences` (word-search style, 4-direction + reverse), `forEach`, `map`, `clone`
   - `math.ts`: `sum`, `product`, `min`, `max`, `count`, `frequency` (returns `Map`), `isAscending`/`isDescending`/`isSorted` (optional `maxDiff`), `removeAt`
   - `index.ts` also has `assertDefined`/`getOrThrow`, `getOrDefault`, `isDefined` — use these instead of ad hoc `!`/`??` checks to satisfy `noUncheckedIndexedAccess`
-- `scripts/*.js` — Node scripts backing the npm commands above (`runner.js` compiles via `tsc` then dynamically imports the built JS and times each part; `start-day.js` writes templates and shells out to `fetch-input.js`).
+- `scripts/*.js` — Node scripts backing the npm commands above (`runner.js` compiles via `tsc` then dynamically imports the built JS and times each part; `start-day.js` writes templates and shells out to `fetch-input.js`; `submit.js` reuses the same build-then-import approach to compute an answer when one isn't passed explicitly).
+- `scripts/lib/` — helpers shared across the scripts above: `aoc-session.js` (session token + User-Agent resolution from CLI arg/env/`.env`), `aoc-html.js` (minimal regex-based HTML→text for AoC's puzzle/response pages), `aoc-state.js` (load/save the per-day submission-tracking JSON).
 
 ## Conventions specific to this repo
 
@@ -48,3 +52,5 @@ VS Code tasks (`.vscode/tasks.json`) mirror `list-days`, `check-day`, `fetch-inp
 - TS config is strict, including `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, and `noPropertyAccessFromIndexSignature` — array/object indexing returns `T | undefined`; handle it explicitly (or use the `src/utils` helpers) rather than asserting.
 - ESLint enables type-aware rules (`strict-boolean-expressions`, `no-explicit-any`, `consistent-type-imports`, `no-floating-promises`, etc.) against `tsconfig.eslint.json`. Non-null assertions (`!`) are allowed by config and used in `utils/grid.ts`, but prefer explicit checks in new code.
 - `AOC_SESSION` (from `.env`, see `.env.example`) is required for automatic input fetching; never commit `.env` or puzzle inputs.
+- `AOC_GITHUB_USERNAME` and `AOC_CONTACT_EMAIL` (also from `.env`) are required by every script that talks to adventofcode.com — they build the outgoing `User-Agent` per AoC's automation etiquette; scripts exit with an error if either is unset.
+- `submit` tracks solved/wrong-answer state per day/part locally (see `src/<year>/problems/day-DD.state.json` above) and refuses to resubmit an answer already known wrong or already correct.

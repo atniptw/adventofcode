@@ -26,6 +26,13 @@ console.log('   npm run fetch-input <year> <day> # Download puzzle input');
 console.log('   # Requires AOC_SESSION in .env file');
 console.log('');
 
+console.log('🧩 Problem & Submission:');
+console.log('   npm run get-problem <year> <day>        # Fetch + save puzzle text');
+console.log('   npm run submit <year> <day> <part>       # Run solution, confirm, submit');
+console.log('   npm run submit <year> <day> <part> <ans> # Submit an explicit answer');
+console.log('   # Both require AOC_SESSION, AOC_GITHUB_USERNAME, AOC_CONTACT_EMAIL in .env');
+console.log('');
+
 console.log('🎯 Example Workflow:');
 console.log('   npm run start-day 2024 5         # Setup day 5');
 console.log('   # Edit src/2024/day-05.ts');
@@ -37,6 +44,7 @@ console.log('📋 File Structure:');
 console.log('   src/<year>/day-<DD>.ts           # Solution files');
 console.log('   src/<year>/day-<DD>.spec.ts      # Test files');
 console.log('   src/<year>/inputs/day-<DD>.txt   # Puzzle inputs');
+console.log('   src/<year>/problems/day-<DD>.md  # Fetched puzzle text');
 console.log('   src/utils/                       # Shared utilities');
 console.log('');
 

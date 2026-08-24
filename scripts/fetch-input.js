@@ -5,6 +5,7 @@ import path from 'path';
 import https from 'https';
 import { fileURLToPath } from 'url';
 import readline from 'readline';
+import { resolveSession, resolveUserAgent } from './lib/aoc-session.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -29,25 +30,8 @@ if (args.length < 2) {
 
 const year = args[0];
 const day = parseInt(args[1]);
-let session = args[2] || process.env.AOC_SESSION;
-
-// Try to load from .env file if not provided
-if (!session) {
-  const envPath = path.join(__dirname, '..', '.env');
-  if (fs.existsSync(envPath)) {
-    const envContent = fs.readFileSync(envPath, 'utf8');
-    const match = envContent.match(/AOC_SESSION=(.+)/);
-    if (match) {
-      session = match[1].trim();
-    }
-  }
-}
-
-if (!session) {
-  console.error('Error: Session token not provided.');
-  console.error('Please provide it as an argument, environment variable, or in .env file');
-  process.exit(1);
-}
+const session = resolveSession(args[2], __dirname);
+const userAgent = resolveUserAgent(__dirname);
 
 // Validate inputs
 if (isNaN(day) || day < 1 || day > 25) {
@@ -101,7 +85,7 @@ function downloadInput() {
   const options = {
     headers: {
       Cookie: `session=${session}`,
-      'User-Agent': 'github.com/YOUR_USERNAME/adventofcode by YOUR_EMAIL',
+      'User-Agent': userAgent,
     },
   };
 

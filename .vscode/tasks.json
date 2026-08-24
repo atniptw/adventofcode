@@ -23,6 +23,20 @@
       "problemMatcher": []
     },
     {
+      "label": "problem: Fetch puzzle text",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "get-problem", "${input:year}", "${input:day}"],
+      "problemMatcher": []
+    },
+    {
+      "label": "submit: Submit an answer",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "submit", "${input:year}", "${input:day}", "${input:part}"],
+      "problemMatcher": []
+    },
+    {
       "label": "help: Show CLI help",
       "type": "shell",
       "command": "npm",
@@ -54,6 +68,11 @@
       "id": "day",
       "type": "promptString",
       "description": "Puzzle day"
+    },
+    {
+      "id": "part",
+      "type": "promptString",
+      "description": "Puzzle part (1 or 2)"
     }
   ]
 }

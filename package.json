@@ -8,6 +8,8 @@
     "solve": "node scripts/runner.js",
     "start-day": "node scripts/start-day.js",
     "fetch-input": "node scripts/fetch-input.js",
+    "get-problem": "node scripts/get-problem.js",
+    "submit": "node scripts/submit.js",
     "list-days": "node scripts/list-days.js",
     "check-day": "node scripts/check-day.js",
     "help": "node scripts/help.js",
