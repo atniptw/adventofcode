@@ -1,8 +1,4 @@
-// import { parseNumbers, parseNumberGrid, parseCharGrid, Grid, frequency, count, sum } from '../utils/index.js';
-
-export function part1(input: string[]): number {
-  const rightStep = 3;
-  const downStep = 1;
+function countTrees(input: string[], rightStep: number, downStep: number): number {
   let col = 0;
   let treeCount = 0;
 
@@ -19,7 +15,18 @@ export function part1(input: string[]): number {
   return treeCount;
 }
 
-export function part2(_input: string[]): number {
-  // TODO: Implement part 2
-  return 0;
+export function part1(input: string[]): number {
+  return countTrees(input, 3, 1);
+}
+
+export function part2(input: string[]): number {
+  const slopes: Array<[number, number]> = [
+    [1, 1],
+    [3, 1],
+    [5, 1],
+    [7, 1],
+    [1, 2],
+  ];
+
+  return slopes.reduce((product, [right, down]) => product * countTrees(input, right, down), 1);
 }

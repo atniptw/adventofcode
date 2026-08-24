@@ -24,10 +24,25 @@ describe('Day 03', () => {
     expect(part1(input)).toBe(expected);
   });
 
-  test.todo.each([{ input: ['1'], expected: 0 }])(
-    'part2($input) -> $expected',
-    ({ input, expected }) => {
-      expect(part2(input)).toBe(expected);
-    }
-  );
+  test.each([
+    {
+      input: [
+        '..##.......',
+        '#...#...#..',
+        '.#....#..#.',
+        '..#.#...#.#',
+        '.#...##..#.',
+        '..#.##.....',
+        '.#.#.#....#',
+        '.#........#',
+        '#.##...#...',
+        '#...##....#',
+        '.#..#...#.#',
+      ],
+      expected: 336,
+    },
+    { input: ['..#', '###', '..#', '###', '..#'], expected: 54 },
+  ])('part2($input) -> $expected', ({ input, expected }) => {
+    expect(part2(input)).toBe(expected);
+  });
 });
