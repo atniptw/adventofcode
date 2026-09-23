@@ -146,5 +146,6 @@ src/*/problems/
 # Temporary runner files
 temp-runner.ts
 
-# Local Claude Code settings
-.claude/
+# Local Claude Code settings - settings.json, hooks/, agents/, skills/ are
+# shared and checked in; only machine-local overrides are ignored.
+.claude/settings.local.json

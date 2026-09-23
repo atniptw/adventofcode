@@ -1,0 +1,39 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=$(jq -r '.tool_input.file_path // empty'); b=$(basename \"$f\" 2>/dev/null); if [[ \"$f\" == */inputs/day-*.txt ]] || [[ \"$b\" == \".env\" || \"$b\" == \".env.local\" || \"$b\" == .env.*.local ]]; then echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"deny\",\"permissionDecisionReason\":\"Blocked by hook: puzzle inputs (inputs/day-*.txt) and .env files are protected from Write/Edit. Edit manually outside Claude Code if this is intentional.\"}}'; fi",
+            "statusMessage": "Checking file protection rules..."
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.claude/hooks/check-commit-safety.sh\"",
+            "statusMessage": "Scanning staged changes for secrets and AoC-restricted files..."
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=$(jq -r '.tool_input.file_path // empty'); if [ -n \"$f\" ] && [ -f \"$f\" ]; then case \"$f\" in *.ts) npx eslint --fix \"$f\"; npx prettier --write \"$f\";; esac; fi 2>/dev/null || true",
+            "statusMessage": "Formatting & linting...",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}
