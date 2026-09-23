@@ -25,7 +25,7 @@ npm run test:coverage            # coverage report
 npm run lint / lint:fix          # eslint
 npm run typecheck                # tsc --noEmit
 npm run format / format:check    # prettier
-npm run check                    # typecheck && lint && test — run before considering work done
+npm run check                    # format:check && typecheck && lint && test — run before considering work done
 npm run build                    # tsc -> build/<year>/day-<DD>.js (runner does this automatically)
 ```
 
