@@ -1,4 +1,4 @@
-import { parseNumberGrid, product } from '../utils/index.js';
+import { getOrThrow, parseNumberGrid, product } from '../utils/index.js';
 
 type Vec3 = [number, number, number];
 
@@ -86,7 +86,7 @@ function addEdgesUntilConnected(points: Vec3[]): { fromIndex: number; toIndex: n
 
 export function part1(input: string[], iterations: number = 1000): number {
   const rows = parseNumberGrid(input, ',');
-  const points: Vec3[] = rows.map((r) => [r[0] ?? 0, r[1] ?? 0, r[2] ?? 0]);
+  const points: Vec3[] = rows.map((r) => [getOrThrow(r[0]), getOrThrow(r[1]), getOrThrow(r[2])]);
   if (points.length === 0) return 0;
   const adj = connectByClosest(points, iterations);
   const comps = components(adj);
@@ -97,7 +97,11 @@ export function part1(input: string[], iterations: number = 1000): number {
 
 export function part2(_input: string[]): number {
   const rows = parseNumberGrid(_input, ',');
-  const points: Vec3[] = rows.map((row) => [row[0] ?? 0, row[1] ?? 0, row[2] ?? 0]);
+  const points: Vec3[] = rows.map((row) => [
+    getOrThrow(row[0]),
+    getOrThrow(row[1]),
+    getOrThrow(row[2]),
+  ]);
   if (points.length === 0) return 0;
   if (points.length === 1) return points[0]![0];
   const lastPair = addEdgesUntilConnected(points);

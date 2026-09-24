@@ -1,3 +1,5 @@
+import { getOrThrow } from '../utils/index.js';
+
 export interface Mapping {
   destStart: number;
   sourceStart: number;
@@ -105,8 +107,8 @@ export function parseSeedRanges(seedLine: string): SeedRangeResult {
 
   // Parse pairs of (start, length)
   for (let i = 0; i < numbers.length - 1; i += 2) {
-    const start = numbers[i] ?? 0;
-    const length = numbers[i + 1] ?? 0;
+    const start = getOrThrow(numbers[i]);
+    const length = getOrThrow(numbers[i + 1]);
     seedRanges.push({ start, end: start + length });
   }
 
@@ -174,8 +176,8 @@ export function part2(input: string[]): number {
   // Parse seed pairs as ranges
   let ranges: Range[] = [];
   for (let i = 0; i < seeds.length - 1; i += 2) {
-    const start = seeds[i] ?? 0;
-    const length = seeds[i + 1] ?? 0;
+    const start = getOrThrow(seeds[i]);
+    const length = getOrThrow(seeds[i + 1]);
     ranges.push({ start, end: start + length });
   }
 

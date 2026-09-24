@@ -1,3 +1,5 @@
+import { getOrThrow } from '../utils/index.js';
+
 function parseNumbers(numbersStr: string): Set<number> {
   return new Set(
     numbersStr
@@ -47,7 +49,7 @@ export function part2(input: string[]): number {
   const cardCounts = new Array(input.length).fill(1);
 
   for (let i = 0; i < input.length; i++) {
-    const matches = matchCounts[i] ?? 0;
+    const matches = getOrThrow(matchCounts[i]);
     const currentCardCount = cardCounts[i];
 
     for (let j = 1; j <= matches && i + j < input.length; j++) {

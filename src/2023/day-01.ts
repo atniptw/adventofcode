@@ -1,4 +1,4 @@
-import { sum } from '../utils/index.js';
+import { getOrThrow, sum } from '../utils/index.js';
 
 export function part1(input: string[]): number {
   const calibrationValues = input.map((line) => {
@@ -54,8 +54,8 @@ export function part2(input: string[]): number {
       return 0;
     }
 
-    const first = digits[0] ?? '0';
-    const last = digits[digits.length - 1] ?? '0';
+    const first = getOrThrow(digits[0]);
+    const last = getOrThrow(digits[digits.length - 1]);
     return parseInt(first + last, 10);
   });
 
