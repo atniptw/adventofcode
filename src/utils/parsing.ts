@@ -11,6 +11,10 @@ export function parseNumberGrid(input: string[], separator: string = ' '): numbe
   );
 }
 
+export function parseGroups(input: string[]): string[] {
+  return input.join('\n').split('\n\n');
+}
+
 export function parseNumberColumns(input: string[], separator: string = ' '): number[][] {
   const columns: number[][] = [];
 

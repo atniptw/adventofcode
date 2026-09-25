@@ -1,4 +1,4 @@
-// import { parseNumbers, parseNumberGrid, parseCharGrid, Grid, frequency, count, sum } from '../utils/index.js';
+import { parseGroups } from '../utils/index.js';
 
 type Passport = Record<string, string>;
 const REQUIRED_FIELDS = ['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid'];
@@ -24,9 +24,7 @@ function heightCheck(input: string): boolean {
 }
 
 export function part1(input: string[]): number {
-  const passports = input
-    .join('\n')
-    .split('\n\n')
+  const passports = parseGroups(input)
     .map((passport) => parsePassport(passport))
     .filter((passport) => REQUIRED_FIELDS.every((field) => field in passport));
 
@@ -34,9 +32,7 @@ export function part1(input: string[]): number {
 }
 
 export function part2(input: string[]): number {
-  const passports = input
-    .join('\n')
-    .split('\n\n')
+  const passports = parseGroups(input)
     .map((passport) => parsePassport(passport))
     .filter((passport) => REQUIRED_FIELDS.every((field) => field in passport))
     .filter((passport) => between(passport['byr'] ?? '', 1920, 2002))
