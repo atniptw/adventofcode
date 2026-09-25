@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Single-package TypeScript (strict ESM) solutions for [Advent of Code](https://adventofcode.com/), spanning multiple years (2015, 2023, 2024, 2025). Tested with Vitest, linted with ESLint + typescript-eslint (type-aware, strict), formatted with Prettier.
+Single-package TypeScript (strict ESM) solutions for [Advent of Code](https://adventofcode.com/), spanning multiple years (2015, 2020, 2023, 2024, 2025). Tested with Vitest, linted with ESLint + typescript-eslint (type-aware, strict), formatted with Prettier.
 
 ## Commands
 
@@ -38,10 +38,10 @@ VS Code tasks (`.vscode/tasks.json`) mirror `list-days`, `check-day`, `fetch-inp
 - `src/<year>/inputs/day-DD.txt` — personal puzzle input, git-ignored (AoC forbids sharing inputs). Never add these to git even via `git add -A`.
 - `src/<year>/problems/day-DD.md` — fetched puzzle prompt text, and `day-DD.state.json` — local submission-tracking state (solved status, accepted answer, wrong guesses per part). Both git-ignored; puzzle text isn't allowed to be redistributed either.
 - `src/utils/` — shared helpers, all re-exported from `src/utils/index.ts`:
-  - `parsing.ts`: `parseNumbers`, `parseNumberGrid`, `parseNumberColumns`, `parseCharGrid`, `joinLines`
-  - `grid.ts`: `Grid<T>` class — `fromStrings`, `get`/`set`, `isInBounds`, `findAll`/`findFirst`, `getNeighbor(s)`, `getLine` (walk in a `Direction`), `countWordOccurrences` (word-search style, 4-direction + reverse), `forEach`, `map`, `clone`
-  - `math.ts`: `sum`, `product`, `min`, `max`, `count`, `frequency` (returns `Map`), `isAscending`/`isDescending`/`isSorted` (optional `maxDiff`), `removeAt`
-  - `index.ts` also has `assertDefined`/`getOrThrow`, `getOrDefault`, `isDefined` — use these instead of ad hoc `!`/`??` checks to satisfy `noUncheckedIndexedAccess`
+  - `parsing.ts`: `parseNumbers`, `parseNumberGrid`, `parseNumberColumns`, `parseGroups` (splits input on blank lines into groups)
+  - `math.ts`: `sum`, `product`
+  - `index.ts` also has `getOrThrow`, `isDefined` — use these instead of ad hoc `!`/`??` checks to satisfy `noUncheckedIndexedAccess`
+  - Helpers get added here as new days need them, and pruned when they end up with zero callers (see `git log -- src/utils/`) — don't assume a helper exists without checking the current file; this list can drift.
 - `scripts/*.js` — Node scripts backing the npm commands above (`runner.js` compiles via `tsc` then dynamically imports the built JS and times each part; `start-day.js` writes templates and shells out to `fetch-input.js`; `submit.js` reuses the same build-then-import approach to compute an answer when one isn't passed explicitly).
 - `scripts/lib/` — helpers shared across the scripts above: `aoc-session.js` (session token + User-Agent resolution from CLI arg/env/`.env`), `aoc-html.js` (minimal regex-based HTML→text for AoC's puzzle/response pages), `aoc-state.js` (load/save the per-day submission-tracking JSON).
 
@@ -50,7 +50,7 @@ VS Code tasks (`.vscode/tasks.json`) mirror `list-days`, `check-day`, `fetch-inp
 - Day files use zero-padded two-digit numbers everywhere: `day-01.ts` … `day-25.ts`.
 - Solutions are plain functions with no shared state between part1/part2 — each re-parses `input` independently.
 - TS config is strict, including `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, and `noPropertyAccessFromIndexSignature` — array/object indexing returns `T | undefined`; handle it explicitly (or use the `src/utils` helpers) rather than asserting.
-- ESLint enables type-aware rules (`strict-boolean-expressions`, `no-explicit-any`, `consistent-type-imports`, `no-floating-promises`, etc.) against `tsconfig.eslint.json`. Non-null assertions (`!`) are allowed by config and used in `utils/grid.ts`, but prefer explicit checks in new code.
+- ESLint enables type-aware rules (`strict-boolean-expressions`, `no-explicit-any`, `consistent-type-imports`, `no-floating-promises`, etc.) against `tsconfig.eslint.json`. Non-null assertions (`!`) are allowed by config and used in a handful of day files, but prefer explicit checks in new code.
 - `AOC_SESSION` (from `.env`, see `.env.example`) is required for automatic input fetching; never commit `.env` or puzzle inputs.
 - `AOC_GITHUB_USERNAME` and `AOC_CONTACT_EMAIL` (also from `.env`) are required by every script that talks to adventofcode.com — they build the outgoing `User-Agent` per AoC's automation etiquette; scripts exit with an error if either is unset.
 - `submit` tracks solved/wrong-answer state per day/part locally (see `src/<year>/problems/day-DD.state.json` above) and refuses to resubmit an answer already known wrong or already correct.
