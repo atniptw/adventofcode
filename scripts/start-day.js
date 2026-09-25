@@ -113,16 +113,10 @@ if (fs.existsSync(testFile)) {
   console.log(`✓ Created test file: ${testFile}`);
 }
 
-// Create empty input file
-const inputFile = path.join(srcYearPath, 'inputs', `day-${dayPadded}.txt`);
-if (fs.existsSync(inputFile)) {
-  console.log(`Day ${day} input already exists: ${inputFile}`);
-} else {
-  fs.writeFileSync(inputFile, '');
-  console.log(`✓ Created input file: ${inputFile}`);
-}
-
 // Step 2: Fetch input
+// (fetch-input.js creates the input file itself; pre-creating an empty
+// placeholder here would make it look "already exists" and skip the
+// download since the spawned child can't be answered interactively)
 console.log('\n🌐 Fetching puzzle input...');
 const fetchArgs = ['scripts/fetch-input.js', year, day.toString()];
 if (session) {
