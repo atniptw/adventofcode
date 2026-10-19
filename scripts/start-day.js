@@ -7,14 +7,15 @@ import { fileURLToPath } from 'url';
 
 // Template content (embedded to avoid external template files)
 const SOLUTION_TEMPLATE = `export function part1(_input: string[]): number {
-    // TODO: Implement part 1
-    return 0;
+  // TODO: Implement part 1
+  return 0;
 }
 
 export function part2(_input: string[]): number {
-    // TODO: Implement part 2
-    return 0;
-}`;
+  // TODO: Implement part 2
+  return 0;
+}
+`;
 
 const TEST_TEMPLATE = `import { part1, part2 } from './day-DAY.js';
 
