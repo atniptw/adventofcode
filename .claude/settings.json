@@ -28,7 +28,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "f=$(jq -r '.tool_input.file_path // empty'); if [ -n \"$f\" ] && [ -f \"$f\" ]; then case \"$f\" in *.ts) npx eslint --fix \"$f\"; npx prettier --write \"$f\";; esac; fi 2>/dev/null || true",
+            "command": "f=$(jq -r '.tool_input.file_path // empty'); if [ -n \"$f\" ] && [ -f \"$f\" ]; then case \"$f\" in *.ts) \"$CLAUDE_PROJECT_DIR/node_modules/.bin/eslint\" --fix \"$f\"; \"$CLAUDE_PROJECT_DIR/node_modules/.bin/prettier\" --write \"$f\";; esac; fi 2>/dev/null || true",
             "statusMessage": "Formatting & linting...",
             "timeout": 30
           }

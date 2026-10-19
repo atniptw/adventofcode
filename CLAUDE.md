@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Single-package TypeScript (strict ESM) solutions for [Advent of Code](https://adventofcode.com/), spanning multiple years (2015, 2020, 2023, 2024, 2025). Tested with Vitest, linted with ESLint + typescript-eslint (type-aware, strict), formatted with Prettier.
+Single-package TypeScript (strict ESM) solutions for [Advent of Code](https://adventofcode.com/).
 
 ## Commands
 
@@ -18,18 +18,8 @@ npm run check-day <year> <day>   # validate a day: files exist, exports present,
 npm run list-days [year]         # status overview of implemented days
 npm run help                     # list all CLI commands
 
-npm test                         # run all tests (vitest run)
-npm test -- day-05                # run tests matching a name, e.g. one day
-npm run test:watch               # vitest watch mode
-npm run test:coverage            # coverage report
-npm run lint / lint:fix          # eslint
-npm run typecheck                # tsc --noEmit
-npm run format / format:check    # prettier
 npm run check                    # format:check && typecheck && lint && test — run before considering work done
-npm run build                    # tsc -> build/<year>/day-<DD>.js (runner does this automatically)
 ```
-
-VS Code tasks (`.vscode/tasks.json`) mirror `list-days`, `check-day`, `fetch-input`, `get-problem` (as "problem"), `submit`, `help`, `solve` (as "run"), and `start-day` (as "start"), each prompting for year/day (and part, for `submit`).
 
 ## Architecture
 
@@ -38,12 +28,8 @@ VS Code tasks (`.vscode/tasks.json`) mirror `list-days`, `check-day`, `fetch-inp
 - `src/<year>/inputs/day-DD.txt` — personal puzzle input, git-ignored (AoC forbids sharing inputs). Never add these to git even via `git add -A`.
 - `src/<year>/problems/day-DD.md` — fetched puzzle prompt text, and `day-DD.state.json` — local submission-tracking state (solved status, accepted answer, wrong guesses per part). Both git-ignored; puzzle text isn't allowed to be redistributed either.
 - `src/utils/` — shared helpers, all re-exported from `src/utils/index.ts`:
-  - `parsing.ts`: `parseNumbers`, `parseNumberGrid`, `parseNumberColumns`, `parseGroups` (splits input on blank lines into groups)
-  - `math.ts`: `sum`, `product`
-  - `index.ts` also has `getOrThrow`, `isDefined` — use these instead of ad hoc `!`/`??` checks to satisfy `noUncheckedIndexedAccess`
+  - `index.ts` has `getOrThrow`, `isDefined` — use these instead of ad hoc `!`/`??` checks to satisfy `noUncheckedIndexedAccess`
   - Helpers get added here as new days need them, and pruned when they end up with zero callers (see `git log -- src/utils/`) — don't assume a helper exists without checking the current file; this list can drift.
-- `scripts/*.js` — Node scripts backing the npm commands above (`runner.js` compiles via `tsc` then dynamically imports the built JS and times each part; `start-day.js` writes templates and shells out to `fetch-input.js`; `submit.js` reuses the same build-then-import approach to compute an answer when one isn't passed explicitly).
-- `scripts/lib/` — helpers shared across the scripts above: `aoc-session.js` (session token + User-Agent resolution from CLI arg/env/`.env`), `aoc-html.js` (minimal regex-based HTML→text for AoC's puzzle/response pages), `aoc-state.js` (load/save the per-day submission-tracking JSON).
 
 ## Conventions specific to this repo
 
