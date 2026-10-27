@@ -24,7 +24,7 @@ npm run check                    # format:check && typecheck && lint && test —
 ## Architecture
 
 - `src/<year>/day-<DD>.ts` — one file per puzzle day, must export `part1(input: string[]): number` and `part2(input: string[]): number`. Input is the puzzle input split into lines (blank lines preserved); parse it internally rather than expecting pre-parsed data.
-- `src/<year>/day-<DD>.spec.ts` — colocated Vitest spec (not under a separate `test/` dir), importing from `./day-DD.js` (note the `.js` extension on a `.ts` import — required by ESM/NodeNext resolution). Uses `describe` + `test.each` with `{ input, expected }` fixtures; new scaffolds start with `test.todo.each`.
+- `src/<year>/day-<DD>.spec.ts` — colocated Vitest spec (not under a separate `test/` dir), importing from `./day-DD.js` (note the `.js` extension on a `.ts` import — required by ESM/NodeNext resolution). Uses `describe` + `test.each` with `{ input, expected }` fixtures; new scaffolds start with `test.todo.each`. Each function under test (`part1`, `part2`, and any exported helper) gets its own nested `describe('<fn>', ...)` inside `describe('Day DD', ...)`, so one function's tests can run alone: `npx vitest run day-DD -t "Day DD > <fn> >"`.
 - `src/<year>/inputs/day-DD.txt` — personal puzzle input, git-ignored (AoC forbids sharing inputs). Never add these to git even via `git add -A`.
 - `src/<year>/problems/day-DD.md` — fetched puzzle prompt text, and `day-DD.state.json` — local submission-tracking state (solved status, accepted answer, wrong guesses per part). Both git-ignored; puzzle text isn't allowed to be redistributed either.
 - `src/utils/` — shared helpers, all re-exported from `src/utils/index.ts`:

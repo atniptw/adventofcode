@@ -28,6 +28,16 @@ logic.
 - **Claude writes the failing `test.each`/`test.todo.each` fixtures** in
   `day-DD.spec.ts` — this is the one file Claude edits directly in this
   workflow.
+- **Give every function under test its own `describe` block**, named exactly
+  after the function (`describe('findGap', ...)`, `describe('part1', ...)`),
+  nested inside the top-level `describe('Day DD', ...)`. Put all of that
+  function's `test.each` / `test` cases in it, including no-mutation guards.
+  This lets the user run one function's tests on its own, from the IDE's
+  per-`describe` run button or with
+  `npx vitest run day-DD -t "Day DD > <fn> >"` — the trailing ` >` keeps
+  `compact` from also matching `compactFiles`. When adding tests for a new
+  helper mid-day, add a new `describe` block for it rather than appending
+  bare tests.
 - For any hand-built fixture involving nontrivial arithmetic, compute-verify
   the expected value with an actual script (e.g. `node -e "..."` or
   `python3 -c "..."`) before writing it in — never write in a
